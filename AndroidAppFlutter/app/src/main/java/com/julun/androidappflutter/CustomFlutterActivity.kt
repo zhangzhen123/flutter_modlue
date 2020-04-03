@@ -30,7 +30,7 @@ class CustomFlutterActivity: FlutterActivity() {
                 CommunityPlugin.CHANNEL_TO_NATIVE_LOCAL
         )
         mMethodChannel?.setMethodCallHandler { call, result ->
-            Log.i(MYTAG, "method=${call.method} method.args=${call.arguments} type=${call.arguments.javaClass}")
+            Log.i(MYTAG, "method=${call.method} method.args=${call.arguments} type=${call.arguments?.javaClass}")
             when(call.method ) {
                 CommunityPlugin.METHOD_LOCAL -> {
                     result.success("我是activity")

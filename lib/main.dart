@@ -129,6 +129,12 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 color: LmColors.theme_color,
                 child: Text("测试更多菜单")),
+            FlatButton(
+                onPressed: () {
+                  CommunityUtil.funToActivity(CommunityUtil.METHOD_FINISH);
+                },
+                color: LmColors.theme_color,
+                child: Text("直接关闭flutter界面")),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,

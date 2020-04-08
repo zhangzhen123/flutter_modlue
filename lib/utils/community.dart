@@ -1,4 +1,5 @@
 import 'package:flutter/services.dart';
+import 'package:lmlive/manager/GlobalDataManager.dart';
 import 'package:lmlive/utils/session_utils.dart';
 
 class CommunityUtil {
@@ -29,9 +30,9 @@ class CommunityUtil {
 
   ///通信相关声明在这里
 
-//  static const String METHOD_GLOBAL = "globalFun";
+  static const String METHOD_GLOBAL = "globalFun";
 
-//  static const String METHOD_LOCAL = "localFun";
+  static const String METHOD_LOCAL = "localFun";
 
   //原生发过来的函数名称的key
   static const String NATIVE_METHOD_KEY = "method";
@@ -41,6 +42,9 @@ class CommunityUtil {
 
   //保存用户信息相关
   static const String METHOD_SAVE_USER_INFO = "saveUserInfo";
+
+  //保存当前直播间Id
+  static const String METHOD_PROGRAM_ID = "programId";
 
   ///初始化消息通信入口函数
   static void initMessageHandler() {
@@ -67,6 +71,11 @@ class CommunityUtil {
           SessionUtils.instance.setSession(map);
           break;
         }
+      case METHOD_PROGRAM_ID:
+        {
+          GlobalDataManager.currentProgramId = map[METHOD_PROGRAM_ID];
+          break;
+        }
     }
   }
 
@@ -78,7 +87,7 @@ class CommunityUtil {
   }
 
   ///向原生页面发出执行相关函数操作 [method]函数名 [params]参数
-  static Future funToActivity(String method, [Map params]) async {
+  static Future funToPager(String method, [Map params]) async {
     final result = await methodChannelLocal.invokeMethod(method, params);
     print("得到原生的支持----$result");
     return result;

@@ -24,7 +24,7 @@ import io.flutter.plugin.common.MethodChannel;
 public class CustomFlutterFragment extends FlutterFragment {
     private boolean isCached;
     private MethodChannel mMethodChannel;
-
+    private FlutterListener mFlutterListener =null;
     @Override
     public void configureFlutterEngine(@NotNull FlutterEngine flutterEngine) {
         super.configureFlutterEngine(flutterEngine);
@@ -50,7 +50,7 @@ public class CustomFlutterFragment extends FlutterFragment {
             @Override
             public void onMethodCall(MethodCall call, MethodChannel.Result result) {
                 if (call.method.equals(CommunityPlugin.METHOD_LOCAL)) {
-                    //todo
+
                 } else if (call.method.equals(CommunityPlugin.METHOD_FINISH)) {
                     result.success(null);
                     getActivity().finish();
@@ -76,5 +76,9 @@ public class CustomFlutterFragment extends FlutterFragment {
         // Construct a DrawableSplashScreen with the loaded splash Drawable and
         // return it.
         return new DrawableSplashScreen(splash);
+    }
+
+    public void setFlutterListener(FlutterListener mFlutterListener) {
+        this.mFlutterListener = mFlutterListener;
     }
 }

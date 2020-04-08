@@ -1,6 +1,8 @@
 package com.julun.lingmeng.flutter_lib
 
 import android.util.Log
+import com.julun.androidappflutter.FlutterAction
+import com.julun.androidappflutter.FlutterListener
 import io.flutter.embedding.android.FlutterActivity
 import io.flutter.embedding.engine.FlutterEngine
 import io.flutter.plugin.common.MethodChannel
@@ -15,6 +17,7 @@ class CustomFlutterActivity: FlutterActivity() {
     var mMethodChannel: MethodChannel? = null
     private var isCached: Boolean = false
 
+    var mFlutterListener: FlutterListener?=null
     override fun configureFlutterEngine(flutterEngine: FlutterEngine) {
         val cid = intent.getStringExtra("cached_engine_id")
 
@@ -33,6 +36,8 @@ class CustomFlutterActivity: FlutterActivity() {
             Log.i(MYTAG, "method=${call.method} method.args=${call.arguments} type=${call.arguments?.javaClass}")
             when(call.method ) {
                 CommunityPlugin.METHOD_LOCAL -> {
+
+                    mFlutterListener?.call(FlutterAction( call.method,call.arguments as? HashMap<String,Any>))
                     result.success("我是activity")
                     //                    result.error("UNAVAILABLE", "Battery level not available.", null)
                 }

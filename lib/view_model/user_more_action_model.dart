@@ -6,6 +6,9 @@ import 'package:lmlive/provider/view_state_simple_model.dart';
 
 /// 获取更多操作
 class UserMoreActionModel extends ViewStateSimpleModel<UserMoreAction> {
+  int programId;
+  UserMoreActionModel(this.programId);
+
   var shareList = [
     MenuItemsListBean(
         itemCode: ShareConstants.SHARE_WX,
@@ -27,7 +30,7 @@ class UserMoreActionModel extends ViewStateSimpleModel<UserMoreAction> {
   @override
   Future<UserMoreAction> loadData() async {
     debugPrint("getActionList start");
-    var actionList = await LiveRepository.getActionList(20776);
+    var actionList = await LiveRepository.getActionList(programId);
     if (actionList.actItems == null) {
       actionList.actItems = [];
     }

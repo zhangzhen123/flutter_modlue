@@ -40,3 +40,8 @@ build/
 .ios/
 .flutter-plugins
 .flutter-plugins-dependencies
+
+.gradle/
+gradle/
+gradlew
+gradlew.bat

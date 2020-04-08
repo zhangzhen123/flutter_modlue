@@ -21,7 +21,7 @@ object FlutterManager {
         flutterEngine = FlutterEngine(context);
 
         // Start executing Dart code to pre-warm the FlutterEngine.
-//        flutterEngine.getNavigationChannel().setInitialRoute("springboard")
+        flutterEngine.getNavigationChannel().setInitialRoute("springboard")
         flutterEngine.dartExecutor.executeDartEntrypoint(
                 DartExecutor.DartEntrypoint.createDefault()
         );
@@ -59,7 +59,7 @@ object FlutterManager {
 //        map[SessionUtils.USERTYPE] = SessionUtils.getUserType()
 //
 //        map[SessionUtils.IS_REG_USER] = SessionUtils.getIsRegUser()
-        map["SESSION_ID"] = "284ae7fb800f41ec9aa5a3b71e423dce"
+        map["SESSION_ID"] = "b4e7f10987fb4e94a4a520dfbd8d702a"
         CommunityPlugin.sendMessage(CommunityPlugin.METHOD_SAVE_USER_INFO, map)
     }
 

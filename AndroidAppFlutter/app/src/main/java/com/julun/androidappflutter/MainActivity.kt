@@ -7,6 +7,7 @@ import androidx.appcompat.app.AppCompatActivity
 import com.julun.lingmeng.flutter_lib.CommunityPlugin
 import com.julun.lingmeng.flutter_lib.FlutterManager
 import io.flutter.embedding.android.FlutterActivity
+import io.flutter.embedding.engine.plugins.FlutterPlugin
 import kotlinx.android.synthetic.main.activity_main.*
 import kotlinx.android.synthetic.main.content_main.*
 
@@ -38,14 +39,16 @@ class MainActivity : AppCompatActivity() {
 //            intent.putExtra("cached_engine_id", FlutterManager.DEFAULT_ENGINE)
 //
 //            this.startActivity(intent)
-            FlutterManager.navigateWithCachedEngine(this, transparent = true)
+
+            FlutterManager.navigateWithCachedEngine(this,route = "/" ,transparent = true)
+            CommunityPlugin.sendMessage("programId", hashMapOf("programId" to 25811))
         }
         button3.setOnClickListener {
             var fFragment = supportFragmentManager.findFragmentByTag(TAG_FLUTTER_FRAGMENT)
 
             // Create and attach a FlutterFragment if one does not exist.
             if (fFragment == null) {
-                val newFlutterFragment = FlutterManager.createFragmentWithCachedEngine()
+                val newFlutterFragment = FlutterManager.createFragmentWithCachedEngine(route = "userAction")
                 fFragment = newFlutterFragment
             }
             if (fFragment?.isAdded == true) {

@@ -1,10 +1,14 @@
+import 'dart:convert';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:lmlive/beans/bean/user_more_action.dart';
 import 'package:lmlive/config/resource_mananger.dart';
+import 'package:lmlive/manager/GlobalDataManager.dart';
 import 'package:lmlive/provider/provider_widget.dart';
 import 'package:lmlive/res/index.dart';
 import 'package:lmlive/ui/widget/image.dart';
+import 'package:lmlive/utils/community.dart';
 import 'package:lmlive/utils/screen_utils.dart';
 import 'package:lmlive/view_model/user_more_action_model.dart';
 import 'package:oktoast/oktoast.dart';
@@ -22,7 +26,7 @@ class MoreActionDialog1 extends StatelessWidget {
   //创建带圆角的容器方法1
   Widget buildShapeContainer1() {
     return ProviderWidget<UserMoreActionModel>(
-      model: UserMoreActionModel(),
+      model: UserMoreActionModel(GlobalDataManager.currentProgramId),
       onModelReady: (model) => model.initData(),
       builder: (context, model, child) {
         return Container(
@@ -54,7 +58,8 @@ class MoreActionDialog1 extends StatelessWidget {
                     margin: EdgeInsets.only(top: pt(30), bottom: pt(25)),
 //          color: LmColors.gray_background,
                     height: pt(62),
-                    child: buildGridView(model?.data?.actItems),
+                    child: buildGridView(
+                        model?.data?.actItems, model?.data?.shareInfo),
 //                      ),
 //                      ),
                   ),
@@ -68,7 +73,8 @@ class MoreActionDialog1 extends StatelessWidget {
                       margin: EdgeInsets.only(top: pt(30), bottom: pt(25)),
 //                      color: LmColors.warning_red,
                       height: pt(62),
-                      child: buildGridView(model?.data?.menuItems)),
+                      child: buildGridView(
+                          model?.data?.menuItems, model.data.shareInfo)),
                 ],
               );
             },
@@ -110,7 +116,7 @@ Column buildColumn() {
         margin: EdgeInsets.only(top: pt(30), bottom: pt(25)),
 //          color: LmColors.gray_background,
         height: pt(62),
-        child: buildGridView(null),
+        child: buildGridView(null, null),
 //                      ),
 //                      ),
       ),
@@ -124,12 +130,13 @@ Column buildColumn() {
           margin: EdgeInsets.only(top: pt(30), bottom: pt(25)),
           color: LmColors.warning_red,
           height: pt(62),
-          child: buildGridView(null)),
+          child: buildGridView(null, null)),
     ],
   );
 }
 
-GridView buildGridView(List<MenuItemsListBean> menuItems) {
+GridView buildGridView(
+    List<MenuItemsListBean> menuItems, ShareInfoBean shareInfo) {
   return GridView.builder(
       scrollDirection: Axis.horizontal,
       padding: EdgeInsets.only(left: pt(20)),
@@ -171,6 +178,10 @@ GridView buildGridView(List<MenuItemsListBean> menuItems) {
         }
         return GestureDetector(
           onTap: () {
+            CommunityUtil.funToPager(CommunityUtil.METHOD_LOCAL, {
+              "itemCode": jsonEncode(item),
+              "shareInfo": jsonEncode(shareInfo)
+            });
             showToast('点击了第${index + 1}个选项--${item.itemName}');
           },
           child: Stack(
@@ -220,7 +231,10 @@ GridView buildGridView(List<MenuItemsListBean> menuItems) {
                     "${item.itemName}",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(fontSize: 12, color: LmColors.black_999),
+                    style: TextStyle(
+                        fontSize: 12,
+                        color: LmColors.black_999,
+                        decoration: TextDecoration.none),
                   ),
                 ),
               )

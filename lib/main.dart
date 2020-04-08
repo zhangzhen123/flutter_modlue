@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:lmlive/Constant.dart';
 import 'package:lmlive/config/provider_manager.dart';
 import 'package:lmlive/ui/dialog/dialog_helper.dart';
 import 'package:lmlive/ui/dialog/more_action_dialog.dart';
+import 'package:lmlive/ui/springboard.dart';
 import 'package:lmlive/ui/widget/app_update.dart';
 import 'package:lmlive/utils/community.dart';
 import 'package:lmlive/utils/screen_utils.dart';
@@ -36,21 +38,26 @@ class MyApp extends StatelessWidget {
             return RefreshConfiguration(
                 hideFooterWhenNotFull: true,
                 child: MaterialApp(
-                  title: 'Flutter Demo',
-                  debugShowCheckedModeBanner: false,
-                  theme: themeModel.themeData(),
-                  darkTheme: themeModel.themeData(platformDarkMode: true),
-                  locale: localeModel.locale,
-                  localizationsDelegates: const [
-                    S.delegate,
+                    title: 'Flutter Demo',
+                    debugShowCheckedModeBanner: false,
+                    theme: themeModel.themeData(),
+                    darkTheme: themeModel.themeData(platformDarkMode: true),
+                    locale: localeModel.locale,
+                    localizationsDelegates: const [
+                      S.delegate,
 //          RefreshLocalizations.delegate, //下拉刷新
-                    GlobalCupertinoLocalizations.delegate,
-                    GlobalMaterialLocalizations.delegate,
-                    GlobalWidgetsLocalizations.delegate
-                  ],
-                  supportedLocales: S.delegate.supportedLocales,
-                  home: MyHomePage(title: 'Flutter Demo Home Page'),
-                ));
+                      GlobalCupertinoLocalizations.delegate,
+                      GlobalMaterialLocalizations.delegate,
+                      GlobalWidgetsLocalizations.delegate
+                    ],
+                    supportedLocales: S.delegate.supportedLocales,
+                    home: MyHomePage(title: 'Flutter Demo Home Page'),
+                    routes: <String, WidgetBuilder>{
+//        "/": (_) => MyHomePage(title: '${window.defaultRouteName}'),
+                      Constant.SPRINGBOARD: (_) => Springboard(),
+                      Constant.USER_ACTION: (_) => MoreActionDialog1(),
+                      "testRouterNew": (_) => Text('testRouterNew')
+                    }));
           },
         ),
       ),
@@ -115,7 +122,7 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
                 onPressed: () {
                   SessionUtils.instance
-                      .setSessionId('284ae7fb800f41ec9aa5a3b71e423dce');
+                      .setSessionId('356a19a1bc89488dacbed4e44f88e57a');
                 },
                 color: LmColors.theme_color,
                 child: Text("登录")),
@@ -131,7 +138,9 @@ class _MyHomePageState extends State<MyHomePage> {
                 child: Text("测试更多菜单")),
             FlatButton(
                 onPressed: () {
-                  CommunityUtil.funToActivity(CommunityUtil.METHOD_FINISH);
+//                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
+                  CommunityUtil.funToPager(
+                      CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
                 },
                 color: LmColors.theme_color,
                 child: Text("直接关闭flutter界面")),

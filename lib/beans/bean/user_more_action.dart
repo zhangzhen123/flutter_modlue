@@ -143,9 +143,9 @@ class MenuItemsListBean {
     return {
       "itemCode": this.itemCode,
       "itemName": this.itemName,
-      "itemPic": this.itemPic,
-      "extJsonCfg": this.extJsonCfg,
-      "itemUrl": this.itemUrl,
+      "itemPic": this.itemPic ?? "",
+      "extJsonCfg": this.extJsonCfg ?? "",
+      "itemUrl": this.itemUrl ?? "",
       "tag": this.tag,
       "miniUserName": this.miniUserName,
     };
@@ -164,9 +164,9 @@ class MenuItemsListBean {
     return MenuItemsListBean(
       itemCode: json["itemCode"],
       itemName: json["itemName"],
-      itemPic: json["itemPic"],
-      extJsonCfg: json["extJsonCfg"],
-      itemUrl: json["itemUrl"],
+      itemPic: json["itemPic"] ?? "",
+      extJsonCfg: json["extJsonCfg"] ?? "",
+      itemUrl: json["itemUrl"] ?? "",
       tag: json["tag"],
       miniUserName: json["miniUserName"],
     );

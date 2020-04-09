@@ -14,7 +14,7 @@ class Constant {
 
   static const String SPRINGBOARD = "springboard"; //跳板页面标识
 
-  static const String USER_ACTION = "userAction"; //跳板页面标识
+  static const String USER_ACTION = "userAction"; //打开更多操作页面标识
 }
 
 class ShareConstants {

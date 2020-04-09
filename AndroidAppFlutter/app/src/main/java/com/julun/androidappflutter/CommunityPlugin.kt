@@ -29,7 +29,7 @@ open class CommunityPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
 
         const val METHOD_SAVE_USER_INFO = "saveUserInfo"
 
-       const val NATIVE_METHOD_KEY = "method"
+        const val NATIVE_METHOD_KEY = "method"
         var messageSender: BasicMessageChannel<Any>? = null
 
         var mEventSink: EventChannel.EventSink? = null
@@ -43,7 +43,7 @@ open class CommunityPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
          * [method]方法名
          * [params]相关方法参数
          */
-        fun sendMessage(method: String ,params :MutableMap<String,Any>) {
+        fun sendMessage(method: String, params: MutableMap<String, Any>) {
             params[NATIVE_METHOD_KEY] = method
             messageSender?.send(params)
         }
@@ -73,8 +73,22 @@ open class CommunityPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
         this.mMethodChannel = MethodChannel(messenger, CHANNEL_TO_NATIVE_GLOBAL)
         this.mMethodChannel!!.setMethodCallHandler(this)
         //原生发送给flutter消息的方式1
-        messageSender = BasicMessageChannel<Any>(messenger, CHANNEL_TO_FLUTTER, StandardMessageCodec())
+        messageSender =
+            BasicMessageChannel<Any>(messenger, CHANNEL_TO_FLUTTER, StandardMessageCodec())
+        messageSender?.setMessageHandler { message, reply ->
+            Log.i("BasicMessageChannel", "message=${message} type=${message?.javaClass}")
+            val map=message as HashMap<String,Any>
+            //todo
+            when (map[NATIVE_METHOD_KEY]) {
+                "testFun" -> {
+                    print("收到testFUn")
+                }
+                METHOD_LOCAL -> {
+                    reply.reply("BasicMessageChannel 成功了")
+                }
+            }
 
+        }
         //原生发送给flutter消息的方式2
         mEventChannel = EventChannel(messenger, CHANNEL_TO_FLUTTER_EVENT)
         mEventChannel?.setStreamHandler(object : EventChannel.StreamHandler {
@@ -94,10 +108,12 @@ open class CommunityPlugin : FlutterPlugin, MethodChannel.MethodCallHandler {
         this.mMethodChannel = null
         this.mEventChannel?.setStreamHandler(null)
         this.mEventChannel = null
+        messageSender?.setMessageHandler(null)
+        messageSender = null
     }
 
     override fun onMethodCall(call: MethodCall, result: MethodChannel.Result) {
-        Log.i("","method=${call.method} arguments=${call.arguments}")
+        Log.i("", "method=${call.method} arguments=${call.arguments}")
         try {
             when (call.method) {
                 METHOD_GET_USER_INFO -> {

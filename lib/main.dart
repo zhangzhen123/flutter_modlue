@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:lmlive/Constant.dart';
 import 'package:lmlive/config/provider_manager.dart';
@@ -51,12 +52,12 @@ class MyApp extends StatelessWidget {
                       GlobalWidgetsLocalizations.delegate
                     ],
                     supportedLocales: S.delegate.supportedLocales,
-                    home: MyHomePage(title: 'Flutter Demo Home Page'),
+//                    home: MyHomePage(title: 'Flutter Demo Home Page'),
                     routes: <String, WidgetBuilder>{
-//        "/": (_) => MyHomePage(title: '${window.defaultRouteName}'),
+                      "/": (_) => Springboard(),
                       Constant.SPRINGBOARD: (_) => Springboard(),
                       Constant.USER_ACTION: (_) => MoreActionDialog1(),
-                      "testRouterNew": (_) => Text('testRouterNew')
+                      "home": (_) => MyHomePage(title: 'Flutter Demo Home Page')
                     }));
           },
         ),
@@ -139,11 +140,26 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
                 onPressed: () {
 //                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
+                  SystemNavigator.pop();
+                },
+                color: LmColors.theme_color,
+                child: Text("直接关闭flutter界面")),
+            FlatButton(
+                onPressed: () {
+//                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
                   CommunityUtil.funToPager(
                       CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
                 },
                 color: LmColors.theme_color,
-                child: Text("直接关闭flutter界面")),
+                child: Text("测试发向原生请求函数")),
+            FlatButton(
+                onPressed: () {
+//                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
+                  CommunityUtil.messageToNative(
+                      CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
+                },
+                color: LmColors.theme_color,
+                child: Text("测试双通道发消息")),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,

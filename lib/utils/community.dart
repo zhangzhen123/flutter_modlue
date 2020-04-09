@@ -34,7 +34,7 @@ class CommunityUtil {
 
   static const String METHOD_LOCAL = "localFun";
 
-  //原生发过来的函数名称的key
+  //原生发过来的函数名称的key 或者flutter发送给原生的函数名key
   static const String NATIVE_METHOD_KEY = "method";
 
   //关闭页面函数
@@ -89,7 +89,15 @@ class CommunityUtil {
   ///向原生页面发出执行相关函数操作 [method]函数名 [params]参数
   static Future funToPager(String method, [Map params]) async {
     final result = await methodChannelLocal.invokeMethod(method, params);
-    print("得到原生的支持----$result");
+    print("funToPager得到原生的支持----$result");
+    return result;
+  }
+
+  ///向原生页面发出执行相关函数操作 [method]相应操作 [params]参数
+  static Future messageToNative(String method, [Map params]) async {
+    params[NATIVE_METHOD_KEY] = method;
+    final result = await messageChannel.send(params);
+    print("messageToNative得到原生的支持----$result");
     return result;
   }
 }

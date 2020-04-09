@@ -25,7 +25,7 @@ class MainActivity : AppCompatActivity() {
         fab.setOnClickListener { view ->
             //            Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
 //                .setAction("Action", null).show()
-            startActivity(FlutterActivity.createDefaultIntent(this))
+            FlutterManager.navigateWithCachedEngine(this,route = "home" ,transparent = true)
         }
 
         button01.setOnClickListener {
@@ -40,7 +40,7 @@ class MainActivity : AppCompatActivity() {
 //
 //            this.startActivity(intent)
 
-            FlutterManager.navigateWithCachedEngine(this,route = "/" ,transparent = true)
+            FlutterManager.navigateWithCachedEngine(this,route = "userAction" ,transparent = true)
             CommunityPlugin.sendMessage("programId", hashMapOf("programId" to 25811))
         }
         button3.setOnClickListener {
@@ -48,7 +48,7 @@ class MainActivity : AppCompatActivity() {
 
             // Create and attach a FlutterFragment if one does not exist.
             if (fFragment == null) {
-                val newFlutterFragment = FlutterManager.createFragmentWithCachedEngine(route = "userAction")
+                val newFlutterFragment = FlutterManager.createFragmentWithCachedEngine(route = "/")
                 fFragment = newFlutterFragment
             }
             if (fFragment?.isAdded == true) {

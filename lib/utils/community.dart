@@ -5,28 +5,25 @@ import 'package:lmlive/utils/session_utils.dart';
 class CommunityUtil {
   static const String CHANNEL_TO_FLUTTER = "plugins/channel_to_flutter";
 
-  static const String CHANNEL_TO_FLUTTER_EVENT =
-      "plugins/channel_to_flutter_event";
+  static const String CHANNEL_TO_FLUTTER_EVENT = "plugins/channel_to_flutter_event";
 
-//全局通信用的
-  static const String CHANNEL_TO_NATIVE_GLOBAL =
-      "plugins/channel_to_native_global";
+  //全局通信用的
+  static const String CHANNEL_TO_NATIVE_GLOBAL = "plugins/channel_to_native_global";
 
-//局部页面通信用的
-  static const String CHANNEL_TO_NATIVE_LOCAL =
-      "plugins/channel_to_native_local";
-
+  //局部页面通信用的
+  static const String CHANNEL_TO_NATIVE_LOCAL = "plugins/channel_to_native_local";
+  //消息双向通道
   static const BasicMessageChannel<dynamic> messageChannel =
       const BasicMessageChannel(CHANNEL_TO_FLUTTER, StandardMessageCodec());
 
-  static const MethodChannel methodChannelGlobal =
-      MethodChannel(CHANNEL_TO_NATIVE_GLOBAL);
+  //向原生请求全局函数通道
+  static const MethodChannel methodChannelGlobal = MethodChannel(CHANNEL_TO_NATIVE_GLOBAL);
 
-  static const MethodChannel methodChannelLocal =
-      MethodChannel(CHANNEL_TO_NATIVE_LOCAL);
+  //向原生请求局部函数通道
+  static const MethodChannel methodChannelLocal = MethodChannel(CHANNEL_TO_NATIVE_LOCAL);
 
-  static const EventChannel _eventChannel =
-      EventChannel(CHANNEL_TO_FLUTTER_EVENT);
+  //向flutter发送event通道
+  static const EventChannel _eventChannel = EventChannel(CHANNEL_TO_FLUTTER_EVENT);
 
   ///通信相关声明在这里
 

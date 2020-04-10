@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:lmlive/Constant.dart';
 import 'package:lmlive/beans/bean/findnews.dart';
+import 'package:lmlive/beans/bean/user_info.dart';
 import 'package:lmlive/config/storage_manager.dart';
 
 import '../lm_api.dart';
@@ -45,5 +46,13 @@ class AppRepository {
     }
     debugPrint('没有发现新版本');
     return null;
+  }
+
+  //用户信息详情
+  static Future<UserInfo> queryUserDetailInfo(String sessionId) async {
+    debugPrint('http.post queryUserDetailInfo ');
+    var response =
+        await http.post('user/acct/info/basic', data: {"sessionId": sessionId});
+    return UserInfo.fromJson(response.data);
   }
 }

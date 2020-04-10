@@ -32,6 +32,7 @@ dependencies:
 
   # State
   provider: 4.0.3
+  fish_redux: ^0.3.1
   #net
   dio: ^3.0.1
   dio_cookie_manager: ^1.0.0

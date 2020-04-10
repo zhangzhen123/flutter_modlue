@@ -5,10 +5,10 @@ import 'package:lmlive/Constant.dart';
 import 'package:lmlive/config/provider_manager.dart';
 import 'package:lmlive/ui/dialog/dialog_helper.dart';
 import 'package:lmlive/ui/dialog/more_action_dialog.dart';
-import 'package:lmlive/ui/springboard.dart';
+import 'package:lmlive/ui/pager/springboard.dart';
+import 'package:lmlive/ui/pager/user_center/page.dart';
 import 'package:lmlive/ui/widget/app_update.dart';
 import 'package:lmlive/utils/community.dart';
-import 'package:lmlive/utils/screen_utils.dart';
 import 'package:lmlive/utils/session_utils.dart';
 import 'package:lmlive/view_model/locale_model.dart';
 import 'package:lmlive/view_model/theme_model.dart';
@@ -54,7 +54,7 @@ class MyApp extends StatelessWidget {
                     supportedLocales: S.delegate.supportedLocales,
 //                    home: MyHomePage(title: 'Flutter Demo Home Page'),
                     routes: <String, WidgetBuilder>{
-                      "/": (_) => Springboard(),
+                      "/": (_) => MyHomePage(title: 'Flutter Demo Home Page'),
                       Constant.SPRINGBOARD: (_) => Springboard(),
                       Constant.USER_ACTION: (_) => MoreActionDialog1(),
                       "home": (_) => MyHomePage(title: 'Flutter Demo Home Page')
@@ -160,6 +160,14 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 color: LmColors.theme_color,
                 child: Text("测试双通道发消息")),
+            FlatButton(
+                onPressed: () {
+                  Navigator.of(context).push(MaterialPageRoute(
+                      builder: (BuildContext buildCtx) =>
+                          UserCenterPage().buildPage(null)));
+                },
+                color: LmColors.theme_color,
+                child: Text("打开用户信息页面")),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,

@@ -69,4 +69,13 @@
   "appUpdateFoundNewVersion": "New version {version}",
   "appUpdateDownloadCanceled": "Download canceled",
   "appUpdateDoubleBackTips": "Press back again, cancel download",
+
+  "myWallet": "MyWallet",
+  "user_dynamic": "MyVideo/Dynamic",
+  "user_cards": "MyCard",
+  "user_level": "MyLevel",
+  "user_welfare_center": "WelfareCenter",
+  "help_affiche": "HelpAffiche",
+  "user_about_us": "AboutUs",
+  "user_royal": "UserRoyal"
 }

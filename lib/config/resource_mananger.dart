@@ -8,6 +8,9 @@ class ImageHelper {
   static const String imagePrefix = 'http://cdn.51lm.tv/';
 
   static String wrapUrl(String url) {
+    if (url == null) {
+      return '';
+    }
     if (url.startsWith('http')) {
       return url;
     } else {}

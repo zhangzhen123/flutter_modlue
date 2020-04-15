@@ -29,10 +29,8 @@ class WrapperImage extends StatelessWidget {
       imageUrl: imageUrl,
       width: width,
       height: height,
-      placeholder: (_, __) =>
-          ImageHelper.placeHolder(width: width, height: height),
-      errorWidget: (_, __, ___) =>
-          ImageHelper.error(width: width, height: height),
+      placeholder: (_, __) => ImageHelper.placeHolder(width: width, height: height),
+      errorWidget: (_, __, ___) => ImageHelper.error(width: width, height: height),
       fit: fit,
     );
   }
@@ -45,7 +43,7 @@ class WrapperImage extends StatelessWidget {
       case ImageType.assets:
         return ImageHelper.wrapAssets(url);
       case ImageType.normal:
-        return url;
+        return ImageHelper.wrapUrl(url);
     }
     return url;
   }

@@ -63,10 +63,7 @@ class StringUtils {
       if (value == null || value.isEmpty) {
         continue;
       }
-      temp = key +
-          "=" +
-          (Uri.encodeQueryComponent(value, encoding: utf8)
-              .replaceAll("+", "%20"));
+      temp = key + "=" + (Uri.encodeQueryComponent(value, encoding: utf8).replaceAll("+", "%20"));
       if ("" == str) {
         str = temp;
       } else {
@@ -74,5 +71,14 @@ class StringUtils {
       }
     }
     return str;
+  }
+}
+
+///处理后台Boolean值的全局函数
+bool boole(String boo) {
+  if (boo == "True") {
+    return true;
+  } else {
+    return false;
   }
 }

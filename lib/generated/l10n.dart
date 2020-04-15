@@ -659,10 +659,73 @@ class S {
     );
   }
 
-  String get test {
+  String get myWallet {
     return Intl.message(
-      'im testccccc',
-      name: 'test',
+      'MyWallet',
+      name: 'myWallet',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get user_dynamic {
+    return Intl.message(
+      'MyVideo/Dynamic',
+      name: 'user_dynamic',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get user_cards {
+    return Intl.message(
+      'MyCard',
+      name: 'user_cards',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get user_level {
+    return Intl.message(
+      'MyLevel',
+      name: 'user_level',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get user_welfare_center {
+    return Intl.message(
+      'WelfareCenter',
+      name: 'user_welfare_center',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get help_affiche {
+    return Intl.message(
+      'HelpAffiche',
+      name: 'help_affiche',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get user_about_us {
+    return Intl.message(
+      'AboutUs',
+      name: 'user_about_us',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get user_royal {
+    return Intl.message(
+      'UserRoyal',
+      name: 'user_royal',
       desc: '',
       args: [],
     );

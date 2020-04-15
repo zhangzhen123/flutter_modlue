@@ -14,4 +14,5 @@ class LmColors {
   static const Color more_action_bg = Color(0xE6000000);
 
   static const Color black_999 = Color(0xff999999);
+  static const Color black_333 = Color(0xff333333);
 }

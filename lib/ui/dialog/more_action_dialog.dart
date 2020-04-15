@@ -30,14 +30,12 @@ class MoreActionDialog1 extends StatelessWidget {
       onModelReady: (model) => model.initData(),
       builder: (context, model, child) {
         return Container(
-          height: pt(238),
+          height: 238,
           alignment: Alignment.center,
           decoration: ShapeDecoration(
               color: LmColors.more_action_bg,
               shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.only(
-                      topLeft: Radius.circular(15),
-                      topRight: Radius.circular(15)))),
+                  borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)))),
           child: Builder(
             builder: (build) {
               if (model.isBusy) {
@@ -55,26 +53,24 @@ class MoreActionDialog1 extends StatelessWidget {
                 mainAxisSize: MainAxisSize.min,
                 children: <Widget>[
                   Container(
-                    margin: EdgeInsets.only(top: pt(30), bottom: pt(25)),
+                    margin: EdgeInsets.only(top: 30, bottom: 25),
 //          color: LmColors.gray_background,
-                    height: pt(62),
-                    child: buildGridView(
-                        model?.data?.actItems, model?.data?.shareInfo),
+                    height: 62,
+                    child: buildGridView(model?.data?.actItems, model?.data?.shareInfo),
 //                      ),
 //                      ),
                   ),
                   Divider(
                     color: Color(0x1affffff),
-                    height: pt(1),
-                    indent: pt(25),
-                    endIndent: pt(25),
+                    height: 1,
+                    indent: 25,
+                    endIndent: 25,
                   ),
                   Container(
-                      margin: EdgeInsets.only(top: pt(30), bottom: pt(25)),
+                      margin: EdgeInsets.only(top: 30, bottom: 25),
 //                      color: LmColors.warning_red,
-                      height: pt(62),
-                      child: buildGridView(
-                          model?.data?.menuItems, model.data.shareInfo)),
+                      height: 62,
+                      child: buildGridView(model?.data?.menuItems, model.data.shareInfo)),
                 ],
               );
             },
@@ -97,8 +93,7 @@ class MoreActionDialog2 extends StatelessWidget {
     debugPrint('buildClipRRect');
     return ClipRRect(
 //                      borderRadius: BorderRadius.circular(15),
-      borderRadius: BorderRadius.only(
-          topLeft: Radius.circular(15), topRight: Radius.circular(15)),
+      borderRadius: BorderRadius.only(topLeft: Radius.circular(15), topRight: Radius.circular(15)),
       child: Container(
         color: LmColors.more_action_bg,
 //                      height: double.infinity,
@@ -113,33 +108,32 @@ Column buildColumn() {
     mainAxisSize: MainAxisSize.min,
     children: <Widget>[
       Container(
-        margin: EdgeInsets.only(top: pt(30), bottom: pt(25)),
+        margin: EdgeInsets.only(top: 30, bottom: 25),
 //          color: LmColors.gray_background,
-        height: pt(62),
+        height: 62,
         child: buildGridView(null, null),
 //                      ),
 //                      ),
       ),
       Divider(
         color: Color(0x1affffff),
-        height: pt(1),
-        indent: pt(25),
-        endIndent: pt(25),
+        height: 1,
+        indent: 25,
+        endIndent: 25,
       ),
       Container(
-          margin: EdgeInsets.only(top: pt(30), bottom: pt(25)),
+          margin: EdgeInsets.only(top: 30, bottom: 25),
           color: LmColors.warning_red,
-          height: pt(62),
+          height: 62,
           child: buildGridView(null, null)),
     ],
   );
 }
 
-GridView buildGridView(
-    List<MenuItemsListBean> menuItems, ShareInfoBean shareInfo) {
+GridView buildGridView(List<MenuItemsListBean> menuItems, ShareInfoBean shareInfo) {
   return GridView.builder(
       scrollDirection: Axis.horizontal,
-      padding: EdgeInsets.only(left: pt(20)),
+      padding: EdgeInsets.only(left: 20),
       gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
           mainAxisSpacing: 20,
           crossAxisSpacing: 20,
@@ -174,14 +168,12 @@ GridView buildGridView(
             break;
           default:
             imageType = ImageType.normal;
-            imageUrl = ImageHelper.wrapUrl(item.itemPic);
+            imageUrl = item.itemPic /*ImageHelper.wrapUrl(item.itemPic)*/;
         }
         return GestureDetector(
           onTap: () {
-            CommunityUtil.funToPager(CommunityUtil.METHOD_LOCAL, {
-              "itemCode": jsonEncode(item),
-              "shareInfo": jsonEncode(shareInfo)
-            });
+            CommunityUtil.funToPager(
+                CommunityUtil.METHOD_LOCAL, {"itemCode": jsonEncode(item), "shareInfo": jsonEncode(shareInfo)});
             showToast('点击了第${index + 1}个选项--${item.itemName}');
           },
           child: Stack(
@@ -190,16 +182,11 @@ GridView buildGridView(
               Positioned(
                 top: 0,
                 child: imageType == ImageType.normal
-                    ? WrapperImage(
-                        imageType: imageType,
-                        url: imageUrl,
-                        height: pt(40),
-                        width: pt(40),
-                        fit: BoxFit.cover)
+                    ? WrapperImage(imageType: imageType, url: imageUrl, height: 40, width: 40, fit: BoxFit.cover)
                     : Image.asset(
                         ImageHelper.wrapAssets(imageUrl),
-                        width: pt(40),
-                        height: pt(40),
+                        width: 40,
+                        height: 40,
                       ),
               ),
               Positioned(
@@ -208,12 +195,10 @@ GridView buildGridView(
                 child: Offstage(
                   offstage: item?.tag == null || item.tag.isEmpty,
                   child: Container(
-                    padding: EdgeInsets.only(
-                        left: pt(3), top: 1, right: pt(3), bottom: 1),
+                    padding: EdgeInsets.only(left: 3, top: 1, right: 3, bottom: 1),
                     decoration: ShapeDecoration(
                       color: Colors.red,
-                      shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.all(Radius.circular(5))),
+                      shape: RoundedRectangleBorder(borderRadius: BorderRadius.all(Radius.circular(5))),
                     ),
                     child: Text(
                       '${item.tag}',
@@ -225,16 +210,13 @@ GridView buildGridView(
               Positioned(
                 bottom: 1,
                 child: Container(
-                  width: pt(50),
+                  width: 50,
                   alignment: Alignment.center,
                   child: Text(
                     "${item.itemName}",
                     maxLines: 1,
                     overflow: TextOverflow.ellipsis,
-                    style: TextStyle(
-                        fontSize: 12,
-                        color: LmColors.black_999,
-                        decoration: TextDecoration.none),
+                    style: TextStyle(fontSize: 12, color: LmColors.black_999, decoration: TextDecoration.none),
                   ),
                 ),
               )

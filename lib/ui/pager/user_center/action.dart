@@ -1,10 +1,23 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:lmlive/beans/bean/user_info.dart';
+import 'package:lmlive/provider/view_state.dart';
 
-enum UserCenterAction { doLoad }
+enum UserCenterAction { onFetch, update, didLoad, error }
 
 class UserCenterActionCreator {
-  static Action doLoadAction(UserInfo userInfo) {
-    return Action(UserCenterAction.doLoad, payload: userInfo);
+  static Action onFetchAction() {
+    return Action(UserCenterAction.onFetch);
+  }
+
+  static Action didLoadAction(UserInfo userInfo) {
+    return Action(UserCenterAction.didLoad, payload: userInfo);
+  }
+
+  static Action updateView(ViewState viewState) {
+    return Action(UserCenterAction.update, payload: viewState);
+  }
+
+  static Action error(dynamic error) {
+    return Action(UserCenterAction.error, payload: error);
   }
 }

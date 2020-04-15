@@ -23,6 +23,7 @@ class UserInfo {
   int beans;
   int royalDiffValue;
   int royalHeat;
+  String royalPic;
   int royalLevel;
   int sjNeedExp;
   int userId;
@@ -53,6 +54,7 @@ class UserInfo {
       this.beans,
       this.royalDiffValue,
       this.royalHeat,
+      this.royalPic,
       this.royalLevel,
       this.sjNeedExp,
       this.userId,
@@ -83,6 +85,7 @@ class UserInfo {
     this.beans = json['beans'];
     this.royalDiffValue = json['royalDiffValue'];
     this.royalHeat = json['royalHeat'];
+    this.royalPic = json['royalPic'];
     this.royalLevel = json['royalLevel'];
     this.sjNeedExp = json['sjNeedExp'];
     this.userId = json['userId'];
@@ -115,6 +118,7 @@ class UserInfo {
     data['beans'] = this.beans;
     data['royalDiffValue'] = this.royalDiffValue;
     data['royalHeat'] = this.royalHeat;
+    data['royalPic'] = this.royalPic;
     data['royalLevel'] = this.royalLevel;
     data['sjNeedExp'] = this.sjNeedExp;
     data['userId'] = this.userId;
@@ -124,6 +128,6 @@ class UserInfo {
 
   @override
   String toString() {
-    return 'UserInfo{cardAndTicketNew: $cardAndTicketNew, gainRoyalCard: $gainRoyalCard, headPic: $headPic, isTopLevel: $isTopLevel, isTopRoyalLevel: $isTopRoyalLevel, nextRoyalName: $nextRoyalName, nickname: $nickname, royalHeatHtml: $royalHeatHtml, royalLevelHtml: $royalLevelHtml, royalName: $royalName, royalStatus: $royalStatus, sex: $sex, showCardAndTicket: $showCardAndTicket, showLocation: $showLocation, showMonthCard: $showMonthCard, showMonthCardWelfare: $showMonthCardWelfare, showRoyalHeat: $showRoyalHeat, showWelfare: $showWelfare, usableRoyalCard: $usableRoyalCard, userType: $userType, welfareTag: $welfareTag, beans: $beans, royalDiffValue: $royalDiffValue, royalHeat: $royalHeat, royalLevel: $royalLevel, sjNeedExp: $sjNeedExp, userId: $userId, userLevel: $userLevel}';
+    return 'UserInfo{cardAndTicketNew: $cardAndTicketNew, gainRoyalCard: $gainRoyalCard, headPic: $headPic, isTopLevel: $isTopLevel, isTopRoyalLevel: $isTopRoyalLevel, nextRoyalName: $nextRoyalName, nickname: $nickname, royalHeatHtml: $royalHeatHtml, royalLevelHtml: $royalLevelHtml, royalName: $royalName, royalStatus: $royalStatus, sex: $sex, showCardAndTicket: $showCardAndTicket, showLocation: $showLocation, showMonthCard: $showMonthCard, showMonthCardWelfare: $showMonthCardWelfare, showRoyalHeat: $showRoyalHeat, showWelfare: $showWelfare, usableRoyalCard: $usableRoyalCard, userType: $userType, welfareTag: $welfareTag, beans: $beans, royalDiffValue: $royalDiffValue, royalHeat: $royalHeat, royalPic: $royalPic, royalLevel: $royalLevel, sjNeedExp: $sjNeedExp, userId: $userId, userLevel: $userLevel}';
   }
 }

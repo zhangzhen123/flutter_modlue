@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmlive/Constant.dart';
 import 'package:lmlive/config/provider_manager.dart';
+import 'package:lmlive/manager/GlobalDataManager.dart';
 import 'package:lmlive/ui/dialog/dialog_helper.dart';
 import 'package:lmlive/ui/dialog/more_action_dialog.dart';
 import 'package:lmlive/ui/pager/springboard.dart';
@@ -101,6 +103,8 @@ class _MyHomePageState extends State<MyHomePage> {
 
   @override
   Widget build(BuildContext context) {
+    //初始化屏幕适配工具类
+    ScreenUtil.init(context, width: 750, height: 1334, allowFontScaling: false);
     // This method is rerun every time setState is called, for instance as done
     // by the _incrementCounter method above.
     //
@@ -122,8 +126,8 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             FlatButton(
                 onPressed: () {
-                  SessionUtils.instance
-                      .setSessionId('356a19a1bc89488dacbed4e44f88e57a');
+                  SessionUtils.instance.setSessionId('356a19a1bc89488dacbed4e44f88e57a');
+                  GlobalDataManager.currentProgramId = 17649;
                 },
                 color: LmColors.theme_color,
                 child: Text("登录")),
@@ -147,24 +151,21 @@ class _MyHomePageState extends State<MyHomePage> {
             FlatButton(
                 onPressed: () {
 //                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
-                  CommunityUtil.funToPager(
-                      CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
+                  CommunityUtil.funToPager(CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
                 },
                 color: LmColors.theme_color,
                 child: Text("测试发向原生请求函数")),
             FlatButton(
                 onPressed: () {
 //                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
-                  CommunityUtil.messageToNative(
-                      CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
+                  CommunityUtil.messageToNative(CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
                 },
                 color: LmColors.theme_color,
                 child: Text("测试双通道发消息")),
             FlatButton(
                 onPressed: () {
-                  Navigator.of(context).push(MaterialPageRoute(
-                      builder: (BuildContext buildCtx) =>
-                          UserCenterPage().buildPage(null)));
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext buildCtx) => UserCenterPage().buildPage(null)));
                 },
                 color: LmColors.theme_color,
                 child: Text("打开用户信息页面")),

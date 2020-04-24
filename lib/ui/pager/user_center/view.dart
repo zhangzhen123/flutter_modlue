@@ -1,10 +1,12 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmlive/beans/bean/user_info.dart';
 import 'package:lmlive/config/resource_mananger.dart';
 import 'package:lmlive/generated/l10n.dart';
 import 'package:lmlive/provider/view_state.dart';
+import 'package:lmlive/provider/view_state_widget.dart';
 import 'package:lmlive/res/color.dart';
 import 'package:lmlive/ui/widget/image.dart';
 import 'package:lmlive/utils/string_utils.dart';
@@ -18,8 +20,8 @@ Widget buildView(UserCenterState state, Dispatch dispatch, ViewService viewServi
   var userInfo = state.userInfo;
 
   return Scaffold(
-      body: Container(
-    padding: EdgeInsets.only(top: ScreenUtil.statusBarHeight),
+      body: SafeArea(
+//    padding: EdgeInsets.only(top: ScreenUtil.statusBarHeight),
     child: SmartRefresher(
       controller: state.refreshController,
       header: WaterDropHeader(),
@@ -30,9 +32,20 @@ Widget buildView(UserCenterState state, Dispatch dispatch, ViewService viewServi
       child: Builder(
         builder: (context) {
           if (viewState == ViewState.busy) {
-            return Center(child: Text("正在忙"));
+            return ViewStateBusyWidget();
           } else if (viewState == ViewState.error) {
-            return Center(child: Text('出错了${state.error}'));
+            return ViewStateErrorWidget(
+              error: state.error,
+              onPressed: () {
+                dispatch(UserCenterActionCreator.onFetchAction());
+              },
+            );
+          } else if (viewState == ViewState.empty) {
+            return ViewStateEmptyWidget(
+              onPressed: () {
+                dispatch(UserCenterActionCreator.onFetchAction());
+              },
+            );
           }
           return SingleChildScrollView(
               child: Column(

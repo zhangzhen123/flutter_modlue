@@ -6,6 +6,7 @@ import 'package:lmlive/beans/bean/user_more_action.dart';
 import 'package:lmlive/config/resource_mananger.dart';
 import 'package:lmlive/manager/GlobalDataManager.dart';
 import 'package:lmlive/provider/provider_widget.dart';
+import 'package:lmlive/provider/view_state_widget.dart';
 import 'package:lmlive/res/index.dart';
 import 'package:lmlive/ui/widget/image.dart';
 import 'package:lmlive/utils/community.dart';
@@ -39,14 +40,13 @@ class MoreActionDialog1 extends StatelessWidget {
           child: Builder(
             builder: (build) {
               if (model.isBusy) {
-                return Text(
-                  '加载中。。。。',
-                  style: TextStyle(fontSize: 30, color: Colors.white),
-                );
+                return ViewStateBusyWidget();
               } else if (model.isError) {
-                return Text(
-                  '出错了。。。',
-                  style: TextStyle(fontSize: 30, color: Colors.white),
+                return ViewStateErrorWidget(
+                  error: model.viewStateError,
+                  onPressed: () {
+                    model.initData();
+                  },
                 );
               }
               return Column(

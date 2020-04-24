@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "theme" : MessageLookupByLibrary.simpleMessage("Theme"),
     "toSignIn" : MessageLookupByLibrary.simpleMessage("Sign In"),
     "toSignUp" : MessageLookupByLibrary.simpleMessage("Sign Up"),
+    "treasure_box_title01" : MessageLookupByLibrary.simpleMessage("时间越长，奖励越好。礼物、弹幕卡、座驾等你领。"),
     "twoPwdDifferent" : MessageLookupByLibrary.simpleMessage("The two passwords differ"),
     "unLike" : MessageLookupByLibrary.simpleMessage("UnLike"),
     "userName" : MessageLookupByLibrary.simpleMessage("Username"),

@@ -19,7 +19,7 @@ class Http extends BaseHttp {
   @override
   void init() {
     if (kDebugMode) {
-      options.baseUrl = ApiConfig.BASE_PRODUCT_URL;
+      options.baseUrl = ApiConfig.BASE_DEBUG_URL;
     } else {
       options.baseUrl = ApiConfig.BASE_PRODUCT_URL;
     }
@@ -43,8 +43,7 @@ class Http extends BaseHttp {
 class ApiInterceptor extends InterceptorsWrapper {
   @override
   onRequest(RequestOptions options) async {
-    debugPrint('---api-request--->url--> ${options.baseUrl}${options.path}' +
-        ' queryData: ${options.data}');
+    debugPrint('---api-request--->url--> ${options.baseUrl}${options.path}' + ' queryData: ${options.data}');
     String header = await getHeaderInfo(options);
     options.contentType;
     options.headers["lmInfo"] = header;
@@ -62,15 +61,13 @@ class ApiInterceptor extends InterceptorsWrapper {
 
     var empty = SessionUtils.instance.getSessionId()?.isNotEmpty;
     if (empty) {
-      lmInfoParams.write(
-          "&s=${SessionUtils.instance.getSessionId()}"); //SessionId//类型：A：安卓客户端
+      lmInfoParams.write("&s=${SessionUtils.instance.getSessionId()}"); //SessionId//类型：A：安卓客户端
     }
     var appVersion = await PlatformUtils.getAppVersion();
     var buildNum = await PlatformUtils.getBuildNum();
     lmInfoParams.write("&v=$appVersion.$buildNum"); //版本号 + BuildNumber
 
-    lmInfoParams
-        .write("&h=${new DateTime.now().millisecondsSinceEpoch ~/ 1000}");
+    lmInfoParams.write("&h=${new DateTime.now().millisecondsSinceEpoch ~/ 1000}");
 
 //    var apptype = BuildConfig.APP_TYPE
 //    if (apptype.isNotEmpty()) {
@@ -202,8 +199,7 @@ class ApiInterceptor extends InterceptorsWrapper {
   @override
   onResponse(Response response) {
 //    debugPrint('---api-response--->resp----->${response.toString()}');
-    LogUtil.v(
-        '---api-response--->${response.request.path}----->${response.toString()}');
+    LogUtil.v('---api-response--->${response.request.path}----->${response.toString()}');
     ResponseData respData = ResponseData.fromJson(response.data);
     if (respData.success) {
       response.data = respData.data;

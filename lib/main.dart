@@ -22,6 +22,8 @@ import 'config/storage_manager.dart';
 import 'generated/l10n.dart';
 import 'package:lmlive/res/index.dart';
 
+import 'ui/pager/online_treasure_box/page.dart';
+
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
   await StorageManager.init();
@@ -126,7 +128,7 @@ class _MyHomePageState extends State<MyHomePage> {
           children: <Widget>[
             FlatButton(
                 onPressed: () {
-                  SessionUtils.instance.setSessionId('356a19a1bc89488dacbed4e44f88e57a');
+                  SessionUtils.instance.setSessionId('940e546da64a465284bdf2aa4fbb9c24');
                   GlobalDataManager.currentProgramId = 17649;
                 },
                 color: LmColors.theme_color,
@@ -169,6 +171,16 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 color: LmColors.theme_color,
                 child: Text("打开用户信息页面")),
+            FlatButton(
+                onPressed: () {
+//                  Navigator.of(context)
+//                      .push(MaterialPageRoute(builder: (BuildContext buildCtx) => OnlineTreasureBoxPage().buildPage(null)));
+                  showBottomDialog(context, (BuildContext context) {
+                    return OnlineTreasureBoxPage().buildPage(null);
+                  });
+                },
+                color: LmColors.theme_color,
+                child: Text("打开宝箱页面")),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,

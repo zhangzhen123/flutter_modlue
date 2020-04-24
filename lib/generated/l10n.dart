@@ -9,7 +9,7 @@ import 'intl/messages_all.dart';
 // **************************************************************************
 
 class S {
-  S(this.localeName);
+  S();
   
   static const AppLocalizationDelegate delegate =
     AppLocalizationDelegate();
@@ -19,15 +19,13 @@ class S {
     final String localeName = Intl.canonicalizedLocale(name);
     return initializeMessages(localeName).then((_) {
       Intl.defaultLocale = localeName;
-      return S(localeName);
+      return S();
     });
   } 
 
   static S of(BuildContext context) {
     return Localizations.of<S>(context, S);
   }
-
-  final String localeName;
 
   String get appName {
     return Intl.message(
@@ -632,7 +630,7 @@ class S {
     );
   }
 
-  String appUpdateFoundNewVersion(dynamic version) {
+  String appUpdateFoundNewVersion(Object version) {
     return Intl.message(
       'New version $version',
       name: 'appUpdateFoundNewVersion',
@@ -726,6 +724,15 @@ class S {
     return Intl.message(
       'UserRoyal',
       name: 'user_royal',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get treasure_box_title01 {
+    return Intl.message(
+      '时间越长，奖励越好。礼物、弹幕卡、座驾等你领。',
+      name: 'treasure_box_title01',
       desc: '',
       args: [],
     );

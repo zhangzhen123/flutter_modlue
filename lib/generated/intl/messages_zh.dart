@@ -84,6 +84,7 @@ class MessageLookup extends MessageLookupByLibrary {
     "theme" : MessageLookupByLibrary.simpleMessage("色彩主题"),
     "toSignIn" : MessageLookupByLibrary.simpleMessage("点我登录"),
     "toSignUp" : MessageLookupByLibrary.simpleMessage("去注册"),
+    "treasure_box_title01" : MessageLookupByLibrary.simpleMessage("时间越长，奖励越好。礼物、弹幕卡、座驾等你领。"),
     "twoPwdDifferent" : MessageLookupByLibrary.simpleMessage("两次密码不一致"),
     "unLike" : MessageLookupByLibrary.simpleMessage("取消收藏"),
     "userName" : MessageLookupByLibrary.simpleMessage("用户名"),

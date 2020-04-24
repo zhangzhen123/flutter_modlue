@@ -33,11 +33,8 @@ Future<void> showListDialog(BuildContext context) async {
   }
 }
 
-// 弹出底部菜单列表模态对话框
-Future<int> showBottomDialog(BuildContext context, WidgetBuilder builder) {
+// 弹出底部菜单列表模态对话框  isScrollControlled为true时 弹窗的高度会解除限制 不然只能最大9/16
+Future<int> showBottomDialog(BuildContext context, WidgetBuilder builder, {bool isScrollControlled = true}) {
   return showModalBottomSheet<int>(
-    backgroundColor: Colors.transparent,
-    context: context,
-    builder: builder,
-  );
+      backgroundColor: Colors.transparent, context: context, builder: builder, isScrollControlled: isScrollControlled);
 }

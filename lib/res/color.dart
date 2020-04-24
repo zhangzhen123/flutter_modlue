@@ -1,7 +1,7 @@
 import 'dart:ui';
 
 class LmColors {
-  static const Color theme_color = Color(0xFF7CB4EF);
+  static const Color theme_color = Color(0xFFFFD630);
   static const Color theme_color_light = Color(0xFF7EDDFF);
   static const Color theme_color_dark = Color(0xFF9A99E8);
   static const Color gray_background = Color(0xFFF6F6F6);

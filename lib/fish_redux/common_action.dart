@@ -2,7 +2,7 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:lmlive/beans/bean/treasure_box_info.dart';
 import 'package:lmlive/provider/view_state.dart';
 
-//TODO replace with your own action
+///通用的网络请求action
 enum CommonAction { updateView, didLoad, error }
 
 class CommonActionCreator {

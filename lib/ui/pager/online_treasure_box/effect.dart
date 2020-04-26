@@ -1,9 +1,10 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter/cupertino.dart' hide Action;
+import 'package:flutter/material.dart' hide Action;
 import 'package:lmlive/fish_redux/common_action.dart';
 import 'package:lmlive/net/error.dart';
 import 'package:lmlive/net/services/live_repository.dart';
 import 'package:lmlive/provider/view_state.dart';
+import 'package:lmlive/ui/pager/online_treasure_box/award/page.dart';
 import 'package:oktoast/oktoast.dart';
 import 'action.dart';
 import 'state.dart';
@@ -44,7 +45,14 @@ Future<void> _onReceived(Action action, Context<OnlineTreasureBoxState> ctx) asy
     ctx.dispatch(OnlineTreasureBoxActionCreator.onFetchAction());
     if (award != null) {
       debugPrint("打开领取弹窗 $award");
-      //todo 打开领取弹窗
+      showDialog<int>(
+          context: ctx.context,
+          builder: (BuildContext context) {
+            return Dialog(
+              child: TreasureBoxAwardPage().buildPage(award),
+              shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(10)),
+            );
+          });
     }
   }, onError: (e, s) {
     var error = ErrorTodo.setError(e, s);

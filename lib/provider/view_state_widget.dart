@@ -2,6 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lmlive/config/resource_mananger.dart';
 import 'package:lmlive/generated/l10n.dart';
+import 'package:lmlive/res/color.dart';
 
 import 'view_state.dart';
 
@@ -30,7 +31,7 @@ class ViewStateWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var titleStyle = Theme.of(context).textTheme.subhead.copyWith(color: Colors.grey);
+    var titleStyle = Theme.of(context).textTheme.subhead.copyWith(color: LmColors.black_999);
     var messageStyle = titleStyle.copyWith(color: titleStyle.color.withOpacity(0.7), fontSize: 14);
     return Column(
       mainAxisAlignment: MainAxisAlignment.center,
@@ -38,7 +39,7 @@ class ViewStateWidget extends StatelessWidget {
       children: <Widget>[
         image ?? Icon(Icons.error_outline, size: 80, color: Colors.grey[500]),
         Padding(
-          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 30),
+          padding: const EdgeInsets.symmetric(horizontal: 30, vertical: 15),
           child: Column(
             mainAxisSize: MainAxisSize.max,
             mainAxisAlignment: MainAxisAlignment.start,
@@ -49,7 +50,7 @@ class ViewStateWidget extends StatelessWidget {
               ),
               SizedBox(height: 20),
               ConstrainedBox(
-                constraints: BoxConstraints(maxHeight: 200, minHeight: 150),
+                constraints: BoxConstraints(maxHeight: 200, minHeight: 50),
                 child: SingleChildScrollView(
                   child: Text(message ?? '', style: messageStyle),
                 ),
@@ -179,12 +180,10 @@ class ViewStateUnAuthImage extends StatelessWidget {
     return Hero(
       tag: 'loginLogo',
       child: Image.asset(
-        ImageHelper.wrapAssets('login_logo.png'),
-        width: 130,
-        height: 100,
-        fit: BoxFit.fitWidth,
-        color: Theme.of(context).accentColor,
-        colorBlendMode: BlendMode.srcIn,
+        ImageHelper.wrapAssets('lm_logo.png'),
+        width: 128,
+        height: 128,
+        fit: BoxFit.scaleDown,
       ),
     );
   }
@@ -200,16 +199,16 @@ class ViewStateButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return OutlineButton(
+    return RaisedButton(
       child: child ??
           Text(
             textData ?? S.of(context).viewStateButtonRetry,
             style: TextStyle(wordSpacing: 5),
           ),
-      textColor: Colors.grey,
+      textColor: LmColors.black_333,
       splashColor: Theme.of(context).splashColor,
       onPressed: onPressed,
-      highlightedBorderColor: Theme.of(context).splashColor,
+      color: LmColors.theme_color,
     );
   }
 }

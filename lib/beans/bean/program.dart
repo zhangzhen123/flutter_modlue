@@ -1,27 +1,30 @@
-class Program {
+class ProgramData {
   String defaultCategory;
   String hasMore;
   List<BannerListListBean> bannerList;
   List<ProgramListListBean> programList;
 
-  Program({this.defaultCategory, this.hasMore, this.bannerList, this.programList});
+  ProgramData({this.defaultCategory, this.hasMore, this.bannerList, this.programList});
 
-  Program.fromJson(Map<String, dynamic> json) {    
+  ProgramData.fromJson(Map<String, dynamic> json) {
     this.defaultCategory = json['defaultCategory'];
     this.hasMore = json['hasMore'];
-    this.bannerList = (json['bannerList'] as List)!=null?(json['bannerList'] as List).map((i) => BannerListListBean.fromJson(i)).toList():null;
-    this.programList = (json['programList'] as List)!=null?(json['programList'] as List).map((i) => ProgramListListBean.fromJson(i)).toList():null;
+    this.bannerList = (json['bannerList'] as List) != null
+        ? (json['bannerList'] as List).map((i) => BannerListListBean.fromJson(i)).toList()
+        : null;
+    this.programList = (json['programList'] as List) != null
+        ? (json['programList'] as List).map((i) => ProgramListListBean.fromJson(i)).toList()
+        : null;
   }
 
   Map<String, dynamic> toJson() {
     final Map<String, dynamic> data = new Map<String, dynamic>();
     data['defaultCategory'] = this.defaultCategory;
     data['hasMore'] = this.hasMore;
-    data['bannerList'] = this.bannerList != null?this.bannerList.map((i) => i.toJson()).toList():null;
-    data['programList'] = this.programList != null?this.programList.map((i) => i.toJson()).toList():null;
+    data['bannerList'] = this.bannerList != null ? this.bannerList.map((i) => i.toJson()).toList() : null;
+    data['programList'] = this.programList != null ? this.programList.map((i) => i.toJson()).toList() : null;
     return data;
   }
-
 }
 
 class BannerListListBean {
@@ -35,7 +38,7 @@ class BannerListListBean {
 
   BannerListListBean({this.adCode, this.adTitle, this.canShare, this.resType, this.resUrl, this.touchType, this.touchValue});
 
-  BannerListListBean.fromJson(Map<String, dynamic> json) {    
+  BannerListListBean.fromJson(Map<String, dynamic> json) {
     this.adCode = json['adCode'];
     this.adTitle = json['adTitle'];
     this.canShare = json['canShare'];
@@ -63,18 +66,30 @@ class ProgramListListBean {
   String isLiving;
   String isPcLive;
   String programName;
-  int onlineUserNum;
+  String upRightInfo;
+  int positionIndex;
   int programId;
+  PlayInfoBean playInfo;
 
-  ProgramListListBean({this.coverPic, this.isLiving, this.isPcLive, this.programName, this.onlineUserNum, this.programId});
+  ProgramListListBean(
+      {this.coverPic,
+      this.isLiving,
+      this.isPcLive,
+      this.programName,
+      this.upRightInfo,
+      this.positionIndex,
+      this.programId,
+      this.playInfo});
 
-  ProgramListListBean.fromJson(Map<String, dynamic> json) {    
+  ProgramListListBean.fromJson(Map<String, dynamic> json) {
     this.coverPic = json['coverPic'];
     this.isLiving = json['isLiving'];
     this.isPcLive = json['isPcLive'];
     this.programName = json['programName'];
-    this.onlineUserNum = json['onlineUserNum'];
+    this.upRightInfo = json['upRightInfo'];
+    this.positionIndex = json['positionIndex'];
     this.programId = json['programId'];
+    this.playInfo = json['playInfo'] != null ? PlayInfoBean.fromJson(json['playInfo']) : null;
   }
 
   Map<String, dynamic> toJson() {
@@ -83,8 +98,34 @@ class ProgramListListBean {
     data['isLiving'] = this.isLiving;
     data['isPcLive'] = this.isPcLive;
     data['programName'] = this.programName;
-    data['onlineUserNum'] = this.onlineUserNum;
+    data['upRightInfo'] = this.upRightInfo;
+    data['positionIndex'] = this.positionIndex;
     data['programId'] = this.programId;
+    if (this.playInfo != null) {
+      data['playInfo'] = this.playInfo.toJson();
+    }
+    return data;
+  }
+}
+
+class PlayInfoBean {
+  String domain;
+  String streamKey;
+  String type;
+
+  PlayInfoBean({this.domain, this.streamKey, this.type});
+
+  PlayInfoBean.fromJson(Map<String, dynamic> json) {
+    this.domain = json['domain'];
+    this.streamKey = json['streamKey'];
+    this.type = json['type'];
+  }
+
+  Map<String, dynamic> toJson() {
+    final Map<String, dynamic> data = new Map<String, dynamic>();
+    data['domain'] = this.domain;
+    data['streamKey'] = this.streamKey;
+    data['type'] = this.type;
     return data;
   }
 }

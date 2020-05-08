@@ -1,12 +1,11 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:lmlive/beans/bean/treasure_box_info.dart';
 import 'package:lmlive/provider/view_state.dart';
 
 ///通用的网络请求action
 enum CommonAction { updateView, didLoad, error }
 
 class CommonActionCreator {
-  static Action didLoadAction(TreasureBoxInfo info) {
+  static Action didLoadAction(dynamic info) {
     return Action(CommonAction.didLoad, payload: info);
   }
 

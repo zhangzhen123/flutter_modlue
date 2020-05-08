@@ -38,3 +38,9 @@ class ShareConstants {
 
   static const String SHARE_COPY_TEXT = "复制链接";
 }
+
+//首页标签类型
+class HomeCategory {
+  static const String HOT = "Hot"; //热门
+  static const String RECOMMEND = "Recom"; //推荐
+}

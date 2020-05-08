@@ -7,6 +7,7 @@ import 'package:lmlive/config/provider_manager.dart';
 import 'package:lmlive/manager/GlobalDataManager.dart';
 import 'package:lmlive/ui/dialog/dialog_helper.dart';
 import 'package:lmlive/ui/dialog/more_action_dialog.dart';
+import 'package:lmlive/ui/pager/program/page.dart';
 import 'package:lmlive/ui/pager/springboard.dart';
 import 'package:lmlive/ui/pager/user_center/page.dart';
 import 'package:lmlive/ui/widget/app_update.dart';
@@ -181,6 +182,13 @@ class _MyHomePageState extends State<MyHomePage> {
                 },
                 color: LmColors.theme_color,
                 child: Text("打开宝箱页面")),
+            FlatButton(
+                onPressed: () {
+                  Navigator.of(context)
+                      .push(MaterialPageRoute(builder: (BuildContext buildCtx) => ProgramPage().buildPage({"category": "Hot"})));
+                },
+                color: LmColors.theme_color,
+                child: Text("打开首页列表页面")),
             Text(
               '$_counter',
               style: Theme.of(context).textTheme.display1,

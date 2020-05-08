@@ -1,9 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:lmlive/beans/bean/treasure_box_info.dart';
-import 'package:lmlive/beans/bean/tresure_box_award.dart';
-import 'package:lmlive/provider/view_state.dart';
 
-//TODO replace with your own action
 enum OnlineTreasureBoxAction { onFetch /*, updateView, didLoad, detailError*/, onReceive }
 
 class OnlineTreasureBoxActionCreator {

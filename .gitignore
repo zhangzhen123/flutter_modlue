@@ -45,3 +45,4 @@ build/
 gradle/
 gradlew
 gradlew.bat
+pubspec.lock

@@ -43,7 +43,7 @@ class Http extends BaseHttp {
 class ApiInterceptor extends InterceptorsWrapper {
   @override
   onRequest(RequestOptions options) async {
-    debugPrint('---api-request--->url--> ${options.baseUrl}${options.path}' + ' queryData: ${options.data}');
+//    debugPrint('---api-request--->url--> ${options.baseUrl}${options.path}' + ' queryData: ${options.data}');
     String header = await getHeaderInfo(options);
     options.contentType;
     options.headers["lmInfo"] = header;
@@ -199,7 +199,7 @@ class ApiInterceptor extends InterceptorsWrapper {
   @override
   onResponse(Response response) {
 //    debugPrint('---api-response--->resp----->${response.toString()}');
-    LogUtil.v('---api-response--->${response.request.path}----->${response.toString()}');
+//    LogUtil.v('---api-response--->${response.request.path}----->${response.toString()}');
     ResponseData respData = ResponseData.fromJson(response.data);
     if (respData.success) {
       response.data = respData.data;

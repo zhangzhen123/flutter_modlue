@@ -78,5 +78,9 @@
   "help_affiche": "HelpAffiche",
   "user_about_us": "AboutUs",
   "user_royal": "UserRoyal",
-  "treasure_box_title01": "时间越长，奖励越好。礼物、弹幕卡、座驾等你领。"
+  "treasure_box_title01": "时间越长，奖励越好。礼物、弹幕卡、座驾等你领。",
+  "follow": "关注",
+  "open_push_title": "开启主播提醒，主播消息不再错过。",
+  "open_push_close_notice": "通知权限关闭，主播开播可能通知不到你哦～",
+  "open_push_guide": "请到“设置”-“通知”中，找到“羚萌直播”进行设置"
 }

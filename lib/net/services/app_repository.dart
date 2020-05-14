@@ -9,12 +9,10 @@ import '../lm_api.dart';
 /// App相关接口
 class AppRepository {
   //  fun findNews(@Body form: FindNewsForm): Observable<Root<FindNewsResult>>
-  static Future<FindNewsBean> checkUpdate(
-      String platform, String version) async {
+  static Future<FindNewsBean> checkUpdate(String platform, String version) async {
     debugPrint('检查更新,当前版本为===>$version');
     bool appFirstStart;
-    String oldVersion =
-        StorageManager.sharedPreferences.getString(Constant.VERSION);
+    String oldVersion = StorageManager.sharedPreferences.getString(Constant.VERSION);
     if (oldVersion?.isEmpty == true) {
       appFirstStart = true;
       StorageManager.sharedPreferences.setString(Constant.VERSION, version);
@@ -34,10 +32,7 @@ class AppRepository {
 //    });
     //todo test
     var response = await http.post('user/app/findNews',
-        data: FindNewsForm(
-            homeCategoryVersion: "1",
-            appFirstStart: true,
-            startAdsVersion: ''));
+        data: FindNewsForm(homeCategoryVersion: "1", appFirstStart: true, startAdsVersion: ''));
 
     var result = FindNewsBean.fromJson(response.data);
     if (result.version.updateType != UpdateType.None) {
@@ -46,13 +41,5 @@ class AppRepository {
     }
     debugPrint('没有发现新版本');
     return null;
-  }
-
-  //用户信息详情
-  static Future<UserInfo> queryUserDetailInfo(String sessionId) async {
-    debugPrint('http.post queryUserDetailInfo ');
-    var response =
-        await http.post('user/acct/info/basic', data: {"sessionId": sessionId});
-    return UserInfo.fromJson(response.data);
   }
 }

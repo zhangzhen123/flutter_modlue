@@ -26,12 +26,10 @@ class ThemeModel with ChangeNotifier {
 
   ThemeModel() {
     /// 用户选择的明暗模式
-    _userDarkMode =
-        StorageManager.sharedPreferences.getBool(kThemeUserDarkMode) ?? false;
+    _userDarkMode = StorageManager.sharedPreferences.getBool(kThemeUserDarkMode) ?? false;
 
     /// 获取主题色
-    _themeColor = Colors.primaries[
-        StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 5];
+    _themeColor = Colors.primaries[StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 5];
 
     /// 获取字体
     _fontIndex = StorageManager.sharedPreferences.getInt(kFontIndex) ?? 0;
@@ -102,8 +100,7 @@ class ThemeModel with ChangeNotifier {
       textTheme: themeData.textTheme.copyWith(
 
           /// 解决中文hint不居中的问题 https://github.com/flutter/flutter/issues/40248
-          subhead: themeData.textTheme.subhead
-              .copyWith(textBaseline: TextBaseline.alphabetic)),
+          subhead: themeData.textTheme.subhead.copyWith(textBaseline: TextBaseline.alphabetic)),
       textSelectionColor: accentColor.withAlpha(60),
       textSelectionHandleColor: accentColor.withAlpha(60),
       toggleableActiveColor: accentColor,
@@ -119,12 +116,15 @@ class ThemeModel with ChangeNotifier {
     return themeData;
   }
 
+  themeData2({bool platformDarkMode: false}) {
+    var isDark = platformDarkMode || _userDarkMode;
+  }
+
   /// 数据持久化到shared preferences
   saveTheme2Storage(bool userDarkMode, MaterialColor themeColor) async {
     var index = Colors.primaries.indexOf(themeColor);
     await Future.wait([
-      StorageManager.sharedPreferences
-          .setBool(kThemeUserDarkMode, userDarkMode),
+      StorageManager.sharedPreferences.setBool(kThemeUserDarkMode, userDarkMode),
       StorageManager.sharedPreferences.setInt(kThemeColorIndex, index)
     ]);
   }

@@ -69,7 +69,6 @@
   "appUpdateFoundNewVersion": "发现新版本{version},是否更新?",
   "appUpdateDownloadCanceled": "下载已取消",
   "appUpdateDoubleBackTips": "再次点击返回键,取消下载",
-
   "myWallet": "我的钱包",
   "user_dynamic": "我的视频/动态",
   "user_cards": "我的卡券",
@@ -78,8 +77,9 @@
   "help_affiche": "帮助与公告",
   "user_about_us": "关于我们",
   "user_royal": "我的贵族",
-
-
-  "treasure_box_title01": "时间越长，奖励越好。礼物、弹幕卡、座驾等你领。"
-
+  "treasure_box_title01": "时间越长，奖励越好。礼物、弹幕卡、座驾等你领。",
+  "follow": "关注",
+  "open_push_title": "开启主播提醒，主播消息不再错过。",
+  "open_push_close_notice": "通知权限关闭，主播开播可能通知不到你哦～",
+  "open_push_guide": "请到“设置”-“通知”中，找到“羚萌直播”进行设置"
 }

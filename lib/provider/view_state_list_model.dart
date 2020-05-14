@@ -1,3 +1,5 @@
+import 'package:lmlive/beans/base/RootListData.dart';
+
 import 'view_state_model.dart';
 
 /// 基于
@@ -14,14 +16,14 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
   // 下拉刷新
   refresh({bool init = false}) async {
     try {
-      List<T> data = await loadData();
-      if (data.isEmpty) {
+      RootListData<T> data = await loadData();
+      if (data.list.isEmpty) {
         list.clear();
         setEmpty();
       } else {
         onCompleted(data);
         list.clear();
-        list.addAll(data);
+        list.addAll(data.list);
         setIdle();
       }
     } catch (e, s) {
@@ -31,7 +33,7 @@ abstract class ViewStateListModel<T> extends ViewStateModel {
   }
 
   // 加载数据
-  Future<List<T>> loadData();
+  Future<RootListData<T>> loadData();
 
-  onCompleted(List<T> data) {}
+  onCompleted(RootListData<T> data) {}
 }

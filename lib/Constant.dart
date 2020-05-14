@@ -44,3 +44,10 @@ class HomeCategory {
   static const String HOT = "Hot"; //热门
   static const String RECOMMEND = "Recom"; //推荐
 }
+
+class FollowPageType {
+  static const String FOLLOW = "FOLLOW"; //关注
+  static const String GUARD = "GUARD"; //守护
+  static const String MANAGER = "MANAGER"; //管理
+  static const String SEE = "SEE"; //看过
+}

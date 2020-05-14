@@ -1,7 +1,7 @@
 import 'package:fish_redux/fish_redux.dart';
 import 'package:flutter/widgets.dart' hide Action;
 import 'package:lmlive/net/error.dart';
-import 'package:lmlive/net/services/app_repository.dart';
+import 'package:lmlive/net/services/user_repository.dart';
 import 'package:lmlive/provider/view_state.dart';
 import 'action.dart';
 import 'state.dart';
@@ -29,7 +29,7 @@ Future<void> _init(Action action, Context<UserCenterState> ctx) async {
 //    ctx.dispatch(UserCenterActionCreator.updateView(ViewState.error));
 //  }
   ctx.dispatch(UserCenterActionCreator.updateView(ViewState.busy));
-  AppRepository.queryUserDetailInfo(sessionId).then((info) {
+  UserRepository.queryUserDetailInfo(sessionId).then((info) {
     if (info == null) {
       ctx.dispatch(UserCenterActionCreator.updateView(ViewState.empty));
     } else {

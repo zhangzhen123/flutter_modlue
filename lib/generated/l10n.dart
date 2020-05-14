@@ -737,6 +737,42 @@ class S {
       args: [],
     );
   }
+
+  String get follow {
+    return Intl.message(
+      '关注',
+      name: 'follow',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get open_push_title {
+    return Intl.message(
+      '开启主播提醒，主播消息不再错过。',
+      name: 'open_push_title',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get open_push_close_notice {
+    return Intl.message(
+      '通知权限关闭，主播开播可能通知不到你哦～',
+      name: 'open_push_close_notice',
+      desc: '',
+      args: [],
+    );
+  }
+
+  String get open_push_guide {
+    return Intl.message(
+      '请到“设置”-“通知”中，找到“羚萌直播”进行设置',
+      name: 'open_push_guide',
+      desc: '',
+      args: [],
+    );
+  }
 }
 
 class AppLocalizationDelegate extends LocalizationsDelegate<S> {

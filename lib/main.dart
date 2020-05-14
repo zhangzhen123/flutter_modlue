@@ -23,6 +23,7 @@ import 'config/storage_manager.dart';
 import 'generated/l10n.dart';
 import 'package:lmlive/res/index.dart';
 
+import 'ui/pager/follow/follow_pager.dart';
 import 'ui/pager/online_treasure_box/page.dart';
 
 void main() async {
@@ -123,77 +124,85 @@ class _MyHomePageState extends State<MyHomePage> {
       body: Center(
         // Center is a layout ui.widget. It takes a single child and positions it
         // in the middle of the parent.
-        child: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-          crossAxisAlignment: CrossAxisAlignment.center,
-          children: <Widget>[
-            FlatButton(
-                onPressed: () {
-                  SessionUtils.instance.setSessionId('01e080d7cbcc4830948b8ba55d130c13');
-                  GlobalDataManager.currentProgramId = 17649;
-                },
-                color: LmColors.theme_color,
-                child: Text("登录")),
-            FlatButton(
-                onPressed: () {
+        child: SingleChildScrollView(
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: <Widget>[
+              FlatButton(
+                  onPressed: () {
+                    SessionUtils.instance.setSessionId('ace4f486743b4e02b108046e1b3a5c37');
+                    GlobalDataManager.currentProgramId = 17649;
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("登录")),
+              FlatButton(
+                  onPressed: () {
 //                  showListDialog(context);
-                  showBottomDialog(context, (BuildContext context) {
+                    showBottomDialog(context, (BuildContext context) {
 //                    return MoreActionDialog2();
-                    return MoreActionDialog1();
-                  });
-                },
-                color: LmColors.theme_color,
-                child: Text("测试更多菜单")),
-            FlatButton(
-                onPressed: () {
+                      return MoreActionDialog1();
+                    });
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("测试更多菜单")),
+              FlatButton(
+                  onPressed: () {
 //                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
-                  SystemNavigator.pop();
-                },
-                color: LmColors.theme_color,
-                child: Text("直接关闭flutter界面")),
-            FlatButton(
-                onPressed: () {
+                    SystemNavigator.pop();
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("直接关闭flutter界面")),
+              FlatButton(
+                  onPressed: () {
 //                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
-                  CommunityUtil.funToPager(CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
-                },
-                color: LmColors.theme_color,
-                child: Text("测试发向原生请求函数")),
-            FlatButton(
-                onPressed: () {
+                    CommunityUtil.funToPager(CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("测试发向原生请求函数")),
+              FlatButton(
+                  onPressed: () {
 //                  CommunityUtil.funToPager(CommunityUtil.METHOD_FINISH);
-                  CommunityUtil.messageToNative(CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
-                },
-                color: LmColors.theme_color,
-                child: Text("测试双通道发消息")),
-            FlatButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext buildCtx) => UserCenterPage().buildPage(null)));
-                },
-                color: LmColors.theme_color,
-                child: Text("打开用户信息页面")),
-            FlatButton(
-                onPressed: () {
+                    CommunityUtil.messageToNative(CommunityUtil.METHOD_LOCAL, {"a": "aaa", "b": 1111});
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("测试双通道发消息")),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context)
+                        .push(MaterialPageRoute(builder: (BuildContext buildCtx) => UserCenterPage().buildPage(null)));
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("打开用户信息页面")),
+              FlatButton(
+                  onPressed: () {
 //                  Navigator.of(context)
 //                      .push(MaterialPageRoute(builder: (BuildContext buildCtx) => OnlineTreasureBoxPage().buildPage(null)));
-                  showBottomDialog(context, (BuildContext context) {
-                    return OnlineTreasureBoxPage().buildPage(null);
-                  });
-                },
-                color: LmColors.theme_color,
-                child: Text("打开宝箱页面")),
-            FlatButton(
-                onPressed: () {
-                  Navigator.of(context)
-                      .push(MaterialPageRoute(builder: (BuildContext buildCtx) => ProgramPage().buildPage({"category": "Hot"})));
-                },
-                color: LmColors.theme_color,
-                child: Text("打开首页列表页面")),
-            Text(
-              '$_counter',
-              style: Theme.of(context).textTheme.display1,
-            ),
-          ],
+                    showBottomDialog(context, (BuildContext context) {
+                      return OnlineTreasureBoxPage().buildPage(null);
+                    });
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("打开宝箱页面")),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).push(
+                        MaterialPageRoute(builder: (BuildContext buildCtx) => ProgramPage().buildPage({"category": "Hot"})));
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("打开首页列表页面")),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext buildCtx) => FollowPager()));
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("打开关注")),
+              Text(
+                '$_counter',
+                style: Theme.of(context).textTheme.display1,
+              ),
+            ],
+          ),
         ),
       ),
       floatingActionButton: FloatingActionButton(

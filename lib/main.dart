@@ -1,3 +1,5 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
@@ -7,6 +9,7 @@ import 'package:lmlive/config/provider_manager.dart';
 import 'package:lmlive/manager/GlobalDataManager.dart';
 import 'package:lmlive/ui/dialog/dialog_helper.dart';
 import 'package:lmlive/ui/dialog/more_action_dialog.dart';
+import 'package:lmlive/ui/pager/mainpage/main_pager.dart';
 import 'package:lmlive/ui/pager/program/page.dart';
 import 'package:lmlive/ui/pager/springboard.dart';
 import 'package:lmlive/ui/pager/user_center/page.dart';
@@ -31,6 +34,12 @@ void main() async {
   await StorageManager.init();
   CommunityUtil.initMessageHandler();
   runApp(MyApp());
+  if (Platform.isAndroid) {
+    SystemUiOverlayStyle systemUiOverlayStyle = SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent, //设置为透明
+    );
+    SystemChrome.setSystemUIOverlayStyle(systemUiOverlayStyle);
+  }
 }
 
 class MyApp extends StatelessWidget {
@@ -63,7 +72,8 @@ class MyApp extends StatelessWidget {
                       "/": (_) => MyHomePage(title: 'Flutter Demo Home Page'),
                       Constant.SPRINGBOARD: (_) => Springboard(),
                       Constant.USER_ACTION: (_) => MoreActionDialog1(),
-                      "home": (_) => MyHomePage(title: 'Flutter Demo Home Page')
+                      "home": (_) => MyHomePage(title: 'Flutter Demo Home Page'),
+                      "mainPager": (_) => MainPager(),
                     }));
           },
         ),
@@ -131,7 +141,7 @@ class _MyHomePageState extends State<MyHomePage> {
             children: <Widget>[
               FlatButton(
                   onPressed: () {
-                    SessionUtils.instance.setSessionId('ace4f486743b4e02b108046e1b3a5c37');
+                    SessionUtils.instance.setSessionId('caa80457276543db8b81a0e3e6140021');
                     GlobalDataManager.currentProgramId = 17649;
                   },
                   color: LmColors.theme_color,
@@ -197,6 +207,12 @@ class _MyHomePageState extends State<MyHomePage> {
                   },
                   color: LmColors.theme_color,
                   child: Text("打开关注")),
+              FlatButton(
+                  onPressed: () {
+                    Navigator.of(context).push(MaterialPageRoute(builder: (BuildContext buildCtx) => MainPager()));
+                  },
+                  color: LmColors.theme_color,
+                  child: Text("打开主页")),
               Text(
                 '$_counter',
                 style: Theme.of(context).textTheme.display1,
@@ -210,6 +226,7 @@ class _MyHomePageState extends State<MyHomePage> {
         tooltip: 'Increment',
         child: Icon(Icons.add),
       ), // This trailing comma makes auto-formatting nicer for build methods.
+      floatingActionButtonLocation: FloatingActionButtonLocation.endFloat,
     );
   }
 

@@ -20,22 +20,29 @@ class _FollowPagerState extends State<FollowPager> with AutomaticKeepAliveClient
   Widget build(BuildContext context) {
     return DefaultTabController(
       child: Scaffold(
-        appBar: AppBar(
-          title: TabBar(
-              isScrollable: true,
-              unselectedLabelColor: LmColors.black_999,
-              labelColor: LmColors.black_333,
-              labelStyle: TextStyle(fontWeight: FontWeight.bold),
-              unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
-              indicatorColor: LmColors.theme_color,
-              indicatorPadding: EdgeInsets.symmetric(horizontal: 5),
-              indicatorWeight: 3,
-              indicatorSize: TabBarIndicatorSize.label,
-              tabs: List.generate(
-                  typeList.length,
-                  (index) => Tab(
-                        text: typeList.values.elementAt(index),
-                      ))),
+        appBar: PreferredSize(
+          child: AppBar(
+            automaticallyImplyLeading: false,
+            leading: null,
+            backgroundColor: Colors.white,
+            centerTitle: true,
+            title: TabBar(
+                isScrollable: true,
+                unselectedLabelColor: LmColors.black_999,
+                labelColor: LmColors.black_333,
+                labelStyle: TextStyle(fontWeight: FontWeight.bold),
+                unselectedLabelStyle: TextStyle(fontWeight: FontWeight.normal),
+                indicatorColor: LmColors.theme_color,
+                indicatorPadding: EdgeInsets.symmetric(horizontal: 5),
+                indicatorWeight: 3,
+                indicatorSize: TabBarIndicatorSize.label,
+                tabs: List.generate(
+                    typeList.length,
+                    (index) => Tab(
+                          text: typeList.values.elementAt(index),
+                        ))),
+          ),
+          preferredSize: Size(double.infinity, 60),
         ),
         body: TabBarView(
           children: List.generate(typeList.length, (index) => FollowListPage(typeList.keys.elementAt(index))),

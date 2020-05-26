@@ -80,7 +80,7 @@ Widget buildView(ProgramState state, Dispatch dispatch, ViewService viewService)
                         case ProgramState.TYPE_BANNER:
                           {
                             debugPrint("我是banner类型");
-                            return StaggeredTile.count(2, 1);
+                            return StaggeredTile.count(2, 0.78);
                           }
                         case ProgramState.TYPE_VIDEO:
                           {

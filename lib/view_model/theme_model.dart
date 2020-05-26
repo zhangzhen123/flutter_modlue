@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:lmlive/config/storage_manager.dart';
 import 'package:lmlive/generated/l10n.dart';
+import 'package:lmlive/res/color.dart';
 import 'package:lmlive/ui/helper/theme_helper.dart';
 
 //const Color(0xFF5394FF),
@@ -29,7 +30,7 @@ class ThemeModel with ChangeNotifier {
     _userDarkMode = StorageManager.sharedPreferences.getBool(kThemeUserDarkMode) ?? false;
 
     /// 获取主题色
-    _themeColor = Colors.primaries[StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 5];
+    _themeColor = Colors.primaries[StorageManager.sharedPreferences.getInt(kThemeColorIndex) ?? 13];
 
     /// 获取字体
     _fontIndex = StorageManager.sharedPreferences.getInt(kFontIndex) ?? 0;
@@ -82,6 +83,7 @@ class ThemeModel with ChangeNotifier {
         accentColorBrightness: Brightness.dark,
         primarySwatch: themeColor,
         accentColor: accentColor,
+        appBarTheme: AppBarTheme(brightness: Brightness.light, color: Colors.white),
         fontFamily: fontValueList[fontIndex]);
 
     themeData = themeData.copyWith(

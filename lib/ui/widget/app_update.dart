@@ -12,9 +12,11 @@ import 'package:lmlive/view_model/app_model.dart';
 import 'package:oktoast/oktoast.dart';
 import 'package:open_file/open_file.dart';
 import 'package:path_provider/path_provider.dart';
+import 'package:provider/provider.dart';
 import 'package:quiver/strings.dart';
 
 import '../../Constant.dart';
+
 //import 'button_progress_indicator.dart';
 //
 //class AppUpdateButton extends StatelessWidget {
@@ -45,7 +47,9 @@ import '../../Constant.dart';
 
 Future checkAppUpdate(BuildContext context) async {
   if (!Platform.isAndroid) return;
-  FindNewsBean appUpdateInfo = await AppUpdateModel().checkUpdate();
+  FindNewsBean appUpdateInfo = await Provider.of<AppUpdateModel>(context, listen: false).checkUpdate();
+//  FindNewsBean appUpdateInfo = await AppUpdateModel().checkUpdate();
+  //
   if (appUpdateInfo?.version?.versionType != UpdateType.None) {
     bool result = await showUpdateAlertDialog(context, appUpdateInfo);
     if (result == true) downloadApp(context, appUpdateInfo);
@@ -62,12 +66,8 @@ showUpdateAlertDialog(context, FindNewsBean appUpdateInfo) async {
               return !forceUpdate;
             },
             child: AlertDialog(
-              title: Text(S
-                  .of(context)
-                  .appUpdateFoundNewVersion(appUpdateInfo.version.newVersion)),
-              content: isNotBlank(appUpdateInfo.version.updateContent)
-                  ? Text(appUpdateInfo.version.updateContent)
-                  : null,
+              title: Text(S.of(context).appUpdateFoundNewVersion(appUpdateInfo.version.newVersion)),
+              content: isNotBlank(appUpdateInfo.version.updateContent) ? Text(appUpdateInfo.version.updateContent) : null,
               actions: <Widget>[
                 if (!forceUpdate)
                   FlatButton(
@@ -129,18 +129,14 @@ showDownloadDialog(context, url, path) async {
       builder: (context) {
         return WillPopScope(
           onWillPop: () async {
-            if (lastBackPressed == null ||
-                DateTime.now().difference(lastBackPressed) >
-                    Duration(seconds: 1)) {
+            if (lastBackPressed == null || DateTime.now().difference(lastBackPressed) > Duration(seconds: 1)) {
               //两次点击间隔超过1秒则重新计时
               lastBackPressed = DateTime.now();
-              showToast(S.of(context).appUpdateDoubleBackTips,
-                  position: ToastPosition.bottom);
+              showToast(S.of(context).appUpdateDoubleBackTips, position: ToastPosition.bottom);
               return false;
             }
             cancelToken.cancel();
-            showToast(S.of(context).appUpdateDownloadCanceled,
-                position: ToastPosition.bottom);
+            showToast(S.of(context).appUpdateDownloadCanceled, position: ToastPosition.bottom);
             return true;
           },
           child: CupertinoAlertDialog(
@@ -151,8 +147,7 @@ showDownloadDialog(context, url, path) async {
                 ValueNotifier notifier = ValueNotifier(0.0);
                 if (!downloading) {
                   downloading = true;
-                  Dio().download(url, path, cancelToken: cancelToken,
-                      onReceiveProgress: (progress, total) {
+                  Dio().download(url, path, cancelToken: cancelToken, onReceiveProgress: (progress, total) {
                     debugPrint('value--${progress / total}');
                     notifier.value = progress / total;
                   }).then((Response response) {

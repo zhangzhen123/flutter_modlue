@@ -35,7 +35,7 @@ ProgramState _didLoad(ProgramState state, Action action) {
   }
   var list = List<MultipleEntity>();
   if (newState.currentCategory == HomeCategory.RECOMMEND) {
-    var recommendList = List();
+    var recommendList = List<ProgramListListBean>();
     if (programs.programList?.isNotEmpty == true) {
       recommendList.add(programs.programList.removeAt(0));
     }

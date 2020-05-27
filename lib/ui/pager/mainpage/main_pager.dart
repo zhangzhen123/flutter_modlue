@@ -5,7 +5,9 @@ import 'package:flutter/widgets.dart';
 import 'package:lmlive/provider/provider_widget.dart';
 import 'package:lmlive/res/color.dart';
 import 'package:lmlive/ui/pager/follow/follow_pager.dart';
+import 'package:lmlive/ui/pager/home/page.dart';
 import 'package:lmlive/ui/pager/user_center/page.dart';
+import 'package:lmlive/ui/widget/KeepAliveWidget.dart';
 import 'package:lmlive/view_model/main_model.dart';
 import 'package:lottie/lottie.dart';
 
@@ -59,13 +61,13 @@ class _MainPagerState extends State<MainPager> with TickerProviderStateMixin {
                 var item = list[index];
                 switch (item) {
                   case "直播":
-                    return Text('直播');
+                    return KeepAliveWidget(HomePagerPage().buildPage(null));
                   case "广场":
-                    return Center(child: Text('广场'));
+                    return KeepAliveWidget(Center(child: Text('广场')));
                   case "关注":
-                    return FollowPager();
+                    return KeepAliveWidget(FollowPager());
                   case "我的":
-                    return UserCenterPage().buildPage(null);
+                    return KeepAliveWidget(UserCenterPage().buildPage(null));
                   default:
                     return Text('不存在的页面');
                 }
@@ -150,7 +152,6 @@ class _MainPagerState extends State<MainPager> with TickerProviderStateMixin {
     setState(() {
       _position = i;
       var ani = _controllers[i];
-      //todo
       _controllers.forEach((item) {
         if (ani == item) {
           item.forward(from: 0);

@@ -14,9 +14,6 @@ const double HOME_SPACE = 5.0;
 Widget buildView(ProgramState state, Dispatch dispatch, ViewService viewService) {
   final ListAdapter listAdapter = viewService.buildAdapter();
   return new Scaffold(
-    appBar: new AppBar(
-      title: new Text('首页数据'),
-    ),
     body: new Padding(
       padding: const EdgeInsets.all(HOME_SPACE),
       child: Builder(

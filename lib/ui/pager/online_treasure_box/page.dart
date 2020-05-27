@@ -1,5 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
-import 'package:flutter/cupertino.dart' hide Action;
+import 'package:flutter/cupertino.dart' hide Action hide Page;
 
 import 'effect.dart';
 import 'reducer.dart';

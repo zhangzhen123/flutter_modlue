@@ -1,3 +1,4 @@
+import 'package:lmlive/view_model/app_model.dart';
 import 'package:lmlive/view_model/locale_model.dart';
 import 'package:lmlive/view_model/theme_model.dart';
 import 'package:provider/provider.dart';
@@ -17,9 +18,12 @@ List<SingleChildWidget> independentServices = [
   ChangeNotifierProvider<LocaleModel>(
     create: (context) => LocaleModel(),
   ),
-//  ChangeNotifierProvider<GlobalFavouriteStateModel>(
-//    create: (context) => GlobalFavouriteStateModel(),
-//  )
+  ChangeNotifierProvider<AppUpdateModel>(
+    create: (context) => AppUpdateModel(),
+  ),
+  ChangeNotifierProvider<AppModel>(
+    create: (context) => AppModel(),
+  )
 ];
 
 /// 需要依赖的model

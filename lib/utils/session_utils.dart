@@ -29,8 +29,8 @@ class SessionUtils {
   static final String PRODUCT_KILL = "PRODUCT_KILL";
   static final String GET_RED_PACKET_AWARD = "get_red_packet_award";
   static final String ADVERSION = "ADVERSION";
-  static final String TABVERSION = "TABVERSION";
-  static final String DEFAULTTAB = "DEFAULTTAB";
+//  static final String TABVERSION = "TABVERSION";
+//  static final String DEFAULTTAB = "DEFAULTTAB";
   static final String FORCELOGIN = "FORCELOGIN";
   static final String FIRST_GUIDE_ZAN = "FIRST_GUIDE_ZAN";
   static final String FIRST_GUIDE_GESTURE = "FIRST_GUIDE_GRESTURE";
@@ -52,6 +52,8 @@ class SessionUtils {
   static final String RECORD_USER_INFO = "record_user_info";
   static final String RECORD_GOODS_DIALOG = "record_goods_dialog";
   static final String OFFICIAL_OPERATE_DIALOG_ID = "official_operate_dialog_id";
+
+  static final String homeTabs = "home_tabs";
   static SessionUtils _instance;
 
   static SessionUtils get instance {
@@ -321,28 +323,12 @@ class SessionUtils {
     return StorageManager.sharedPreferences.getString(ADVERSION) ?? "";
   }
 
-  void setTabVersion(String version) {
-    StorageManager.sharedPreferences.setString(TABVERSION, version);
-  }
-
-  String getTabVersion() {
-    return StorageManager.sharedPreferences.getString(TABVERSION) ?? "1";
-  }
-
   void setForceLogin(bool forceLogin) {
     StorageManager.sharedPreferences.setBool(FORCELOGIN, forceLogin);
   }
 
   bool getForceLogin() {
     return StorageManager.sharedPreferences.getBool(FORCELOGIN) ?? false;
-  }
-
-  void setDefaultCategory(String tab) {
-    StorageManager.sharedPreferences.setString(DEFAULTTAB, tab);
-  }
-
-  String getDefaultCategory() {
-    return StorageManager.sharedPreferences.getString(DEFAULTTAB) ?? "";
   }
 
   void setVideoFirstZanGuide(bool status) {
@@ -495,6 +481,14 @@ class SessionUtils {
 
   int getOfficialOperateID() {
     return StorageManager.sharedPreferences.getInt(OFFICIAL_OPERATE_DIALOG_ID) ?? 0;
+  }
+
+  void setHomeTabs(String tabs) {
+    StorageManager.sharedPreferences.setString(homeTabs, tabs);
+  }
+
+  String getHomeTabs() {
+    return StorageManager.sharedPreferences.getString(homeTabs) ?? '';
   }
 
   void setLoginOut() {

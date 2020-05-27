@@ -2,13 +2,13 @@ import 'package:fish_redux/fish_redux.dart';
 import 'package:lmlive/beans/bean/program.dart';
 
 class ProgramVideoState implements Cloneable<ProgramVideoState> {
-  ProgramListListBean programBean;
+  List<ProgramListListBean> videoList;
 
-  ProgramVideoState({this.programBean});
+  ProgramVideoState({this.videoList});
 
   @override
   ProgramVideoState clone() {
-    return ProgramVideoState()..programBean = programBean;
+    return ProgramVideoState()..videoList = videoList;
   }
 }
 

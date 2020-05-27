@@ -5,13 +5,13 @@ import 'action.dart';
 import 'state.dart';
 
 Widget buildView(ProgramVideoState state, Dispatch dispatch, ViewService viewService) {
-  var data = state.programBean;
+  var data = state.videoList;
   return Container(
       color: Colors.green,
       child: new Center(
         child: new CircleAvatar(
           backgroundColor: Colors.white,
-          child: new Text('${data.programName}  我是视频'),
+          child: new Text('${data.length}  我是视频'),
         ),
       ));
 }

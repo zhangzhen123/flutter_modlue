@@ -1,4 +1,5 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/cupertino.dart';
 import 'package:lmlive/beans/bean/multiple_entity.dart';
 import 'package:lmlive/provider/view_state.dart';
 import 'package:lmlive/ui/pager/program/components/banner_component/state.dart';
@@ -41,10 +42,11 @@ class ProgramState extends MutableSource implements Cloneable<ProgramState> {
   Object getItemData(int index) {
     String type = programs[index].type;
     var content = programs[index].content;
+
     switch (type) {
       case TYPE_VIDEO:
         {
-          return ProgramVideoState(programBean: content);
+          return ProgramVideoState(videoList: content);
         }
       case TYPE_PROGRAM:
         {

@@ -50,7 +50,7 @@ Future checkAppUpdate(BuildContext context) async {
   FindNewsBean appUpdateInfo = await Provider.of<AppUpdateModel>(context, listen: false).checkUpdate();
 //  FindNewsBean appUpdateInfo = await AppUpdateModel().checkUpdate();
   //
-  if (appUpdateInfo?.version?.versionType != UpdateType.None) {
+  if (appUpdateInfo?.version?.updateType != UpdateType.None) {
     bool result = await showUpdateAlertDialog(context, appUpdateInfo);
     if (result == true) downloadApp(context, appUpdateInfo);
   }

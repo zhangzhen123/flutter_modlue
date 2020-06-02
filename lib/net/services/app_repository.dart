@@ -37,9 +37,11 @@ class AppRepository {
     var result = FindNewsBean.fromJson(response.data);
     if (result.version.updateType != UpdateType.None) {
       debugPrint('发现新版本===>${result.version.newVersion}');
-      return result;
+//      return result;
+    } else {
+      debugPrint('没有发现新版本');
     }
-    debugPrint('没有发现新版本');
-    return null;
+
+    return result;
   }
 }

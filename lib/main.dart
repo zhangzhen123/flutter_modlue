@@ -2,6 +2,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_ijkplayer/flutter_ijkplayer.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:lmlive/Constant.dart';
@@ -31,7 +32,13 @@ import 'ui/pager/online_treasure_box/page.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // 强制竖屏
+  SystemChrome.setPreferredOrientations([DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
   await StorageManager.init();
+  await IjkManager.initIJKPlayer();
+  IjkConfig.level = LogLevel.error;
   CommunityUtil.initMessageHandler();
   runApp(MyApp());
   if (Platform.isAndroid) {
@@ -54,7 +61,6 @@ class MyApp extends StatelessWidget {
             return RefreshConfiguration(
                 hideFooterWhenNotFull: true,
                 child: MaterialApp(
-                    title: 'Flutter Demo',
                     debugShowCheckedModeBanner: false,
                     theme: themeModel.themeData(),
                     darkTheme: themeModel.themeData(platformDarkMode: true),

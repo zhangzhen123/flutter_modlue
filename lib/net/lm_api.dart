@@ -19,7 +19,7 @@ class Http extends BaseHttp {
   @override
   void init() {
     if (kDebugMode) {
-      options.baseUrl = ApiConfig.BASE_DEBUG_URL;
+      options.baseUrl = ApiConfig.BASE_PRODUCT_URL;
     } else {
       options.baseUrl = ApiConfig.BASE_PRODUCT_URL;
     }

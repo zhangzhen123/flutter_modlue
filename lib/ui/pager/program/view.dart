@@ -12,6 +12,7 @@ import 'state.dart';
 const double HOME_SPACE = 5.0;
 
 Widget buildView(ProgramState state, Dispatch dispatch, ViewService viewService) {
+  debugPrint('ProgramState buildView=${state.refreshController.hashCode}');
   final ListAdapter listAdapter = viewService.buildAdapter();
   return new Scaffold(
     body: new Padding(
@@ -81,7 +82,7 @@ Widget buildView(ProgramState state, Dispatch dispatch, ViewService viewService)
                           }
                         case ProgramState.TYPE_VIDEO:
                           {
-                            return StaggeredTile.count(2, 2);
+                            return StaggeredTile.count(2, 1.5);
                           }
                         default:
                           {

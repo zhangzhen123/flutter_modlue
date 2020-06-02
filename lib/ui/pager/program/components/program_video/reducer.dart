@@ -1,17 +1,12 @@
 import 'package:fish_redux/fish_redux.dart';
+import 'package:flutter/material.dart' hide Action;
+import 'package:lmlive/beans/bean/program.dart';
 
 import 'action.dart';
 import 'state.dart';
 
 Reducer<ProgramVideoState> buildReducer() {
   return asReducer(
-    <Object, Reducer<ProgramVideoState>>{
-      ProgramVideoAction.action: _onAction,
-    },
+    <Object, Reducer<ProgramVideoState>>{},
   );
-}
-
-ProgramVideoState _onAction(ProgramVideoState state, Action action) {
-  final ProgramVideoState newState = state.clone();
-  return newState;
 }

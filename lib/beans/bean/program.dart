@@ -106,19 +106,31 @@ class ProgramListListBean {
     }
     return data;
   }
+
+  @override
+  String toString() {
+    return 'ProgramListListBean{coverPic: $coverPic, isLiving: $isLiving, isPcLive: $isPcLive, programName: $programName, upRightInfo: $upRightInfo, positionIndex: $positionIndex, programId: $programId, playInfo: $playInfo}';
+  }
 }
 
 class PlayInfoBean {
+  //url格式
+  static const String Url = "Url";
+
+  //正则表达式格式
+  static const String Regex = "Regex";
   String domain;
   String streamKey;
   String type;
+  String rtmp;
 
-  PlayInfoBean({this.domain, this.streamKey, this.type});
+  PlayInfoBean({this.domain, this.streamKey, this.type, this.rtmp});
 
   PlayInfoBean.fromJson(Map<String, dynamic> json) {
     this.domain = json['domain'];
     this.streamKey = json['streamKey'];
     this.type = json['type'];
+    this.rtmp = json['rtmp'];
   }
 
   Map<String, dynamic> toJson() {
@@ -126,6 +138,12 @@ class PlayInfoBean {
     data['domain'] = this.domain;
     data['streamKey'] = this.streamKey;
     data['type'] = this.type;
+    data['rtmp'] = this.rtmp;
     return data;
+  }
+
+  @override
+  String toString() {
+    return 'PlayInfoBean{domain: $domain, streamKey: $streamKey, type: $type, rtmp: $rtmp}';
   }
 }

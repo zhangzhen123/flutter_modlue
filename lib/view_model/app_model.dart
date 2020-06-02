@@ -3,6 +3,7 @@ import 'dart:io';
 
 import 'package:flutter/material.dart';
 import 'package:lmlive/beans/bean/findnews.dart';
+import 'package:lmlive/config/storage_manager.dart';
 import 'package:lmlive/net/services/app_repository.dart';
 import 'package:lmlive/provider/view_state_model.dart';
 import 'package:lmlive/utils/platform_utils.dart';
@@ -14,7 +15,6 @@ const kAppFirstEntry = 'kAppFirstEntry';
 // 主要用于app启动相关
 class AppModel with ChangeNotifier {
   bool isFirst = false;
-
   bool get isSdk => false;
 
   loadIsFirstEntry() async {
@@ -25,6 +25,7 @@ class AppModel with ChangeNotifier {
 }
 
 class AppUpdateModel extends ViewStateModel {
+  static const String HOME_CATEGORY = "homeCategory";
   HomePageTab homeCategory;
 
   Future<FindNewsBean> checkUpdate() async {
@@ -37,6 +38,7 @@ class AppUpdateModel extends ViewStateModel {
     } catch (e, s) {
       setError(e, s);
     }
+    debugPrint('appUpdateInfo.homeCategory=${appUpdateInfo.homeCategory.homeCategories}');
     saveTabsInfo(appUpdateInfo.homeCategory);
     return appUpdateInfo;
   }
@@ -47,6 +49,7 @@ class AppUpdateModel extends ViewStateModel {
     this.homeCategory = homeCategory;
     String json = jsonEncode(homeCategory);
     SessionUtils.instance.setHomeTabs(json);
+//    StorageManager.localStorage.setItem(HOME_CATEGORY, homeCategory);
   }
 
   ///获取tabs 如果缓存没有 取sp
@@ -54,6 +57,9 @@ class AppUpdateModel extends ViewStateModel {
     if (homeCategory != null) {
       return homeCategory;
     }
-    return HomePageTab.fromJson(jsonDecode(SessionUtils.instance.getHomeTabs()));
+
+    homeCategory = HomePageTab.fromJson(jsonDecode(SessionUtils.instance.getHomeTabs()));
+//    homeCategory = HomePageTab.fromJson(jsonDecode(StorageManager.localStorage.getItem(HOME_CATEGORY)));
+    return homeCategory;
   }
 }

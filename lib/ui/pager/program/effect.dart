@@ -12,18 +12,24 @@ Effect<ProgramState> buildEffect() {
     Lifecycle.initState: _init,
     ProgramAction.onFetch: _onFetch,
     ProgramAction.onFetchMore: _onFetchMore,
-    Lifecycle.dispose: _onDispose
+    Lifecycle.dispose: _onDispose,
+    Lifecycle.deactivate: _testdeactivate,
+    Lifecycle.reassemble: _testdeactivate,
+    Lifecycle.didUpdateWidget: _testdidUpdateWidget,
+    Lifecycle.didChangeDependencies: _testdiddidChangeDependencies,
+    Lifecycle.build: _testbuild,
   });
 }
 
 Future<void> _init(Action action, Context<ProgramState> ctx) async {
-  debugPrint("ProgramState _init");
+  debugPrint("ProgramState _init state=${ctx.state.refreshController.hashCode}");
   ctx.dispatch(CommonActionCreator.updateView(ViewState.busy));
   ctx.dispatch(ProgramActionCreator.onFetchAction());
 }
 
 void _onFetch(Action action, Context<ProgramState> ctx) {
   var state = ctx.state;
+  debugPrint("ProgramState _onFetch state=${state.refreshController.hashCode}");
   //每次重置offset
   state.offset = 0;
   ProgramRepository.getProgramList(ProgramState.LIMIT, state.currentCategory, state.offset).then((info) {
@@ -49,4 +55,25 @@ void _onFetchMore(Action action, Context<ProgramState> ctx) {
 
 Future _onDispose(Action action, Context<ProgramState> ctx) async {
   ctx.state.refreshController.dispose();
+  ctx.state.ijkMediaController?.dispose();
+}
+
+Future _testdeactivate(Action action, Context<ProgramState> ctx) async {
+  debugPrint('_testdeactivate');
+}
+
+Future _testreassemble(Action action, Context<ProgramState> ctx) async {
+  debugPrint('_testreassemble');
+}
+
+Future _testdidUpdateWidget(Action action, Context<ProgramState> ctx) async {
+  debugPrint('_testdidUpdateWidget');
+}
+
+Future _testdiddidChangeDependencies(Action action, Context<ProgramState> ctx) async {
+  debugPrint('_testdiddidChangeDependencies');
+}
+
+Future _testbuild(Action action, Context<ProgramState> ctx) async {
+  debugPrint('_testbuild');
 }
